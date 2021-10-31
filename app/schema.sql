@@ -10,5 +10,6 @@ CREATE table posts(
     , author_id INTEGER
     , title VARCHAR(66)
     , post TEXT
+    , pub_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     , FOREIGN KEY (author_id) REFERENCES user(id) 
 )

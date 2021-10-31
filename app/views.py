@@ -25,11 +25,6 @@ def get_home():
 						'INSERT INTO users(username, password) VALUES(?,?)', (new_username,password)
 					)
 					db.commit()
-					users=db.execute(
-						'SELECT * FROM users'
-					)
-					for user in users:
-						print(user[1])
 					return redirect(request.url)
 				else:
 					print('confirmed password were wrong')
@@ -38,6 +33,28 @@ def get_home():
 		else:
 			print('no user name were sent')
 
-	return render_template("home.html")
+	if method=="POST":
+		if "post-title" in form and form["post-title"]:
+			if "post-body" in form and form['post-body']:
+				post_title = form["post-title"]
+				post_body=form["post-body"]
+				db=get_db()
+				# time=
 
+				db.execute(
+					'INSERT INTO posts(title,post) VALUES(?,?)', (post_title, post_body)
+				)
+				db.commit()
+				return redirect(request.url)
+			else:
+				print("no body were found for thr post")
+		else:
+			print('no title were found for this post')
 
+	db=get_db()
+	users=db.execute('SELECT * FROM users')
+	posts=db.execute('SELECT * FROM posts')
+	return render_template("home.html"
+	,users=users
+	,posts=posts
+	)

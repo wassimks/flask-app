@@ -52,6 +52,7 @@
     .text-centerize{text-align: center;}
     .xl-font{font-size: x-large;}
     .serif{font-family: 'aldus', serif;}
+    .stander-border{border:1px solid white;}
     .profile-image{
       height:30px;
       width:30px;
@@ -84,8 +85,7 @@
       border-width: 0px;
       border-color: blue;
     }
-    .desition-btn{
-    }
+    
     
     #sign-in-form{display: none;}
     #navbar{
@@ -98,12 +98,42 @@
     #validate{
       background-color: #005457;
     }
+    #post{
+      background-color: #005457;
+    }
+    #skip{
+      background-color: #b00a4c;
+      position: absolute;
+      top: 0vh;
+      right: 0px;
+      padding: 10px;
+    }
     #exit{
       background-color: #b00a4c;
       position: fixed;
       top: 0px;
       right: 0px;
       padding: 10px;
+    }
+    #post-container{
+      width: 100%;
+      height: 66vh;
+      padding: 0vw 8vw;
+    }
+    #post-description{
+      height:7vh;
+    }
+    #container-post-form{
+      position: fixed;
+      top:8vh;
+      right:0px;
+      height:100vh;
+      width: 0%;
+      overflow: hidden;
+    }
+    #post-form{
+      background-color: rgba(0,0,0,0.8);
+      height:100%;
     }
     </style>
   </head>
@@ -142,7 +172,9 @@
             <div>points.ph</div>
           </div>
           <div class="flex wt">
-            add
+            <button id="add-post" class="transparent-btn" style="color: white;">
+              add
+            </button>
           </div>
         </div>
       </div>
@@ -150,19 +182,42 @@
       <div class="col-12 flex no-overflow" style="margin-top:8vh; height:92vh;">
         <div class="col-3"></div>
         <div class="col-6 flex flex-column flex-evenly">
-          <div id="posts-scam" class="flex wt no-overflow no-edges dark-mode-item-bg">
-            information generales sur les postes disponible
-          </div>
-          <div class="flex flex-column flex-evenly wt no-edges no-overflow dark-mode-item-bg pubcart">
-            <div class="flex">
-              <div class="col-4 text-centerize"> administrateur </div>
-              <div class="col-4 text-centerize"> date/time </div>
-              <div class="col-4 text-centerize"> control op. </div>
+          <div style="max-height: 92vh; overflow: auto;">
+            <div id="posts-scam" class="flex wt no-overflow no-edges dark-mode-item-bg">
+              information generales sur les postes disponible
             </div>
-            <div> description </div>
-            <div> attachment</div>
-            <div> reactions / comments / statistcs</div>
-            <div> display few comments + option to display all comment</div>
+            {% for post in posts %}}
+            <div id="post-container" class="dark-mode-item-bg">
+              <div class="col-12 flex flex-between wt writing-padding" >
+                <div>administrateur</div>
+                <div style="font-size: 12px;">{{post[4]}}</div>
+                <div style="font-size: 12px;">control op.</div>
+              </div>
+              <div id="post-description" class="col-12 flex flex-centerize wt" >
+                <h4 class="" style="font-family: cursive;">
+                  {{post[2]}}
+                </h4> 
+              </div>
+              <div class="col-12 flex flex-centerize wt serif" style="height:43vh;">
+                {{post[3]}}
+              </div>
+              <div class="col-12 wt flex">
+                <div class="col-6 text-centerize stander-border no-edges">
+                  <button class="transparent-btn">
+                    <i class="far fa-heart"></i>
+                  </button> 
+                </div>
+                <div class="col-6 text-centerize stander-border no-edges">
+                  <button class="transparent-btn">
+                    <i class="far fa-comment-alt"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12">
+
+              </div>
+            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="col-3"></div>
@@ -192,7 +247,23 @@
       </div>
     </div>
 
-
+    <div id="container-post-form" class="col-5">
+      <div id="post-form" class="col-12 flex flex-centerize">
+        <div>
+          <form action="" method="POST" class="flex flex-evenly flex-column" >
+            <input name="post-title" type="text" class="no-edges no-border text-centerize serif" placeholder="title">
+            <div>
+              <br><br>
+            </div>
+            <textarea name="post-body" id="" cols="30" rows="10"></textarea>
+            <button id="post" class="wt serif col-12 writing-padding no-border" type="submit">post</button>
+          </form>
+        </div>
+        <button id="skip" class="wt serif writing-padding no-border">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -211,6 +282,14 @@
       $('#show-to-signin').click(function(){
         $('#sign-in-form').fadeIn(150)
       })
+
+      $('#add-post').click(function(){
+        $('#container-post-form').animate({width:'41%'}, 200)
+      })
+      $('#skip').click(function(){
+        $('#container-post-form').animate({width:'0%'}, 200)
+      })
+
     })
   </script>
   </html>
