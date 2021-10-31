@@ -1,0 +1,123 @@
+@font-face {
+    font-family: andis_regular;
+    src: url(\static\Andis_Regular\JAM_Type_Design_-_Andis_Regular.otf);
+  }
+  @font-face {
+    font-family: sensation;
+    src: url(\static\sansation\Sansation\Sansation_Light.ttf);
+  }
+
+    *{margin:0px; padding:0px; box-sizing: border-box;}
+    *::-webkit-scrollbar{display: none;}
+    html{overflow-x: hidden;}
+    body, html{min-height: 100vh;}
+    .col-1{width:8.33%;}
+    .col-2{width:16.66%;}
+    .col-3{width:25%;}
+    .col-4{width:33.33%;}
+    .col-5{width:41.66%;}
+    .col-6{width:50%;}
+    .col-7{width:58.33%;}
+    .col-8{width:66.66%;}
+    .col-9{width:75%;}
+    .col-10{width:83.33%;}
+    .col-11{width:91.66;}
+    .col-12{width:100%;}
+    .on-pc{display: auto;}
+    .grid{display:grid;}
+    .dbl-column{grid-template-columns:40% 60%;}
+    .flex{display:flex;}
+    .flex-centerize{
+      justify-content: center;
+      align-items: center;
+    }
+    .flex-column{flex-flow: column;}
+    .flex-evenly{justify-content: space-evenly;}
+    .flex-between{justify-content: space-between;}
+    .nav{max-height: 7vh;}
+    .full-page-height{min-height:100vh;}
+    .full-height{height:100%;}
+    .text-centerize{text-align: center;}
+    .writing-padding{padding:2px 4px;}
+    .wt{color:white;}
+    .no-edges{border-radius:5px;}
+    .nav-items{
+      font-size: x-large;
+      font-family: monospace;
+      background-color: rgba(0, 173, 180, 60%);
+      color: white;
+      box-shadow: 0px 0px 0px white;
+      border-radius: 5px;
+      transition: 0.4s;
+
+    }
+    .nav-items:hover{
+      border:1px solid white;
+      background-color: rgba(0, 173, 180, 100%);
+      box-shadow: 6px 6px 13px grey;
+      transition: 0.4s;
+      z-index: 10;
+    }
+    .lightgrey-bg{background-color: lightgrey;}
+    .white-bg{background-color: white;}
+    .stander-margin{margin: 8px;}
+    .no-overflow{overflow: auto;}
+    #main-contaier{
+      grid-template-columns: 65% 35% ;
+    }
+    #Manage{
+      font-size: 40px;
+      font-family: serif;
+      color:#393d46 ;
+      text-shadow: 2px 1px 4px #00adb4;
+    }
+    #get-started{
+      background-color:rgb(66, 255, 133);
+      outline-width:0px;
+      padding:2px 20px;
+      border: 1px solid white;
+      border-radius:5px;
+      font-size: 20px;
+    }
+    #check-advises{
+      background-color:rgb(253 247 52);
+      outline-width:0px;
+      padding:2px 20px;
+      border: 1px solid white;
+      border-radius:5px;
+      font-size: 20px;
+
+    }
+    #description{
+      width:100%;
+      height:100%;
+      position:absolute;
+      top:0px;
+      background-color:rgba(0,0,0,0.6);
+    }
+    .descriptive-items{
+      font-size: larger;
+      letter-spacing: 1.2px;
+      line-height: 1.6;
+      font-family: serif;
+      list-style: inside;
+    }
+    #phone-manage{
+      font-family: serif;
+      color: rgb(150 132 80);
+      font-style: italic;
+      text-shadow: 1px 1px 1px #00adb4;
+      font-size: x-large;
+    }
+    #more_options{
+      outline-width: 0px;
+      border: 1px solid white;
+      background-color:#ff626a;
+      margin: 8px;
+    }
+    #options{display: none;}
+    .on-phone{display:none;}
+    @media screen and (max-width:700px) {
+      .on-pc{display:none;}
+      .on-phone{display:block;}
+    }
