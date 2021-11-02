@@ -42,6 +42,7 @@
     .flex-column{flex-flow: column;}
     .flex-evenly{justify-content: space-evenly;}
     .flex-between{justify-content: space-between;}
+    .flex-around{justify-content: space-around;}
     .wt{color:white;}
     .writing-padding{padding:2px 4px;}
     .no-overflow{overflow: auto;}
@@ -108,6 +109,13 @@
       right: 0px;
       padding: 10px;
     }
+    #quit-options{
+      background-color: #b00a4c;
+      position: absolute;
+      top: 0vh;
+      right: 0px;
+      padding: 5px;
+    }
     #exit{
       background-color: #b00a4c;
       position: fixed;
@@ -118,7 +126,7 @@
     #post-container{
       width: 100%;
       height: 66vh;
-      padding: 0vw 8vw;
+      padding: 0vw 6vw;
     }
     #post-description{
       height:7vh;
@@ -126,14 +134,28 @@
     #container-post-form{
       position: fixed;
       top:8vh;
-      right:0px;
+      right:16.66%;
       height:100vh;
       width: 0%;
       overflow: hidden;
     }
     #post-form{
       background-color: rgba(0,0,0,0.8);
-      height:100%;
+      height:75%;
+      border-left: 2px solid dotted;
+      border-bottom: 2px solid dotted;
+      border-bottom-left-radius: 55px;
+    }
+    #options{
+      position: fixed;
+      top:8vh;
+      right:0px;
+      height:0vh;
+      /* width: 0%; */
+      overflow: hidden;
+      background-color:rgba(0,0,0,0.8);
+      box-shadow: -2px 0px 4px #2f2f2f;
+      z-index: 10;
     }
     </style>
   </head>
@@ -159,7 +181,7 @@
             <button class="transparent-btn"> <i class="far fa-user-circle"></i></button>
           </div>
           <div class="xl-font">
-            <button id="show-to-signin" class="transparent-btn"> <i class="fas fa-ellipsis-h"></i> </button>
+            <button id="" class="transparent-btn"> <i class="fas fa-ellipsis-h"></i> </button>
           </div>
         </div>
         <div class="col-4 flex flex-evenly">
@@ -172,8 +194,8 @@
             <div>points.ph</div>
           </div>
           <div class="flex wt">
-            <button id="add-post" class="transparent-btn" style="color: white;">
-              add
+            <button id="more-options" class="transparent-btn" style="color: white;">
+              more
             </button>
           </div>
         </div>
@@ -187,11 +209,15 @@
               information generales sur les postes disponible
             </div>
             {% for post in posts %}}
-            <div id="post-container" class="dark-mode-item-bg">
+            <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
               <div class="col-12 flex flex-between wt writing-padding" >
-                <div>administrateur</div>
-                <div style="font-size: 12px;">{{post[4]}}</div>
-                <div style="font-size: 12px;">control op.</div>
+                <div class="col-4 flex flex-centerize">administrateur</div>
+                <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post[4]}}</div>
+                <div class="col-4 xl-font flex flex-centerize">
+                  <button class="transparent-btn" style="color: white;">
+                    <i class="fas fa-align-justify"></i>
+                  </button>
+                </div>
               </div>
               <div id="post-description" class="col-12 flex flex-centerize wt" >
                 <h4 class="" style="font-family: cursive;">
@@ -232,7 +258,7 @@
             <span class="wt flex flex-centerize serif"> Create a username:</span>
               <input name="new_username" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
             <span class="wt flex flex-centerize serif"> Create password: </span>
-              <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
+              <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder=""><br><br>
             <span class="wt flex flex-centerize serif">Confirm password: </span>
               <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br>
             <span class="wt flex flex-centerize serif"></span>
@@ -240,28 +266,36 @@
                 <button id="validate" class="wt serif col-2 no-edges writing-padding no-border" type="submit">validate</button>
               </div>
             </form>
-            <button id="exit" class="wt serif writing-padding no-border">
+            <!-- <button id="exit" class="wt serif writing-padding no-border">
               <i class="fas fa-times"></i>
-            </button>
+            </button> -->
         </div>
       </div>
     </div>
 
+    <div id="options" class="col-2 wt serif flex flex-centerize">
+      <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
+          <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register </button></li></div>
+          <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button></li></div>
+          <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li></div>
+      </div>
+      <button id="quit-options" class="wt serif writing-padding no-border">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
     <div id="container-post-form" class="col-5">
       <div id="post-form" class="col-12 flex flex-centerize">
-        <div>
+        <div style="margin: 20px; overflow: auto;">
           <form action="" method="POST" class="flex flex-evenly flex-column" >
             <input name="post-title" type="text" class="no-edges no-border text-centerize serif" placeholder="title">
             <div>
               <br><br>
             </div>
-            <textarea name="post-body" id="" cols="30" rows="10"></textarea>
+            <textarea name="post-body" id="" cols="30" rows="5"></textarea>
             <button id="post" class="wt serif col-12 writing-padding no-border" type="submit">post</button>
           </form>
         </div>
-        <button id="skip" class="wt serif writing-padding no-border">
-          <i class="fas fa-times"></i>
-        </button>
       </div>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -276,18 +310,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      $('#exit').click(function(){
-        $('#sign-in-form').fadeOut(150)
-      })
+      // $('#exit').click(function(){
+      // })
       $('#show-to-signin').click(function(){
-        $('#sign-in-form').fadeIn(150)
+        if ($('#sign-in-form').css('display')=="none"){
+          $('#sign-in-form').fadeIn(150)
+          $('#container-post-form').animate({width:'0%'}, 200)
+        }
+        else{
+          $('#sign-in-form').fadeOut(150)
+        }
       })
-
+      
       $('#add-post').click(function(){
-        $('#container-post-form').animate({width:'41%'}, 200)
+        if( $('#container-post-form').css("width")=="0px" ){
+          $('#container-post-form').animate({width:'41%'}, 200)
+          $('#sign-in-form').fadeOut(150)
+        }
+        else{
+          $('#container-post-form').animate({width:'0%'}, 200)
+        }
       })
-      $('#skip').click(function(){
+      $('#more-options').click(function(){
+        $('#options').animate({height:'100vh'}, 200)
+      })
+      $('#quit-options').click(function(){
         $('#container-post-form').animate({width:'0%'}, 200)
+        $('#sign-in-form').fadeOut(150)
+
+        $('#options').delay(200).animate({height:'0vh'}, 200)
       })
 
     })
