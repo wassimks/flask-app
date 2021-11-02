@@ -1,29 +1,20 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_manager
 import os
 
-# def create_app(test_config=None):
-#     app=Flask(__name__, instance_relative_config=True)
-#     app.config.from_mapping(
-#         SECRET_KEY='development'
-#         , DATABASE=os.path.join(app.instance_path, 'flaskApp.sqlite')
-#     )
-
-#     if test_config is None:
-#         app.config.from_pyfile('config.py', silent=True)
-#     else:
-#         app.config.from_mapping(test_config)
-
-#     try:
-#         os.makedirs(app.instance_path)
-#     except OSError:
-#         pass
-
-#     return app
 
 app=Flask(__name__)
-app.config.from_mapping(
-    SECRET_KEY='dev'
-    , DATABASE=os.path.join(app.instance_path, 'flaskApp.sqlite')
-)
+datab=SQLAlchemy(app)
+login_M=LoginManager(app)
+
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///alchemy.db'
+app.config['SECRET_KEY']='123654789963258741321456987'
+
+
+# app.config.from_mapping(
+#     SECRET_KEY='dev'
+#     , DATABASE=os.path.join(app.instance_path, 'flaskApp.sqlite')
+# )
 
 from . import views
