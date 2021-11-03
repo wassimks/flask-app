@@ -186,8 +186,14 @@
         </div>
         <div class="col-4 flex flex-evenly">
           <div class="flex wt ">
-            <div>ph.profile</div>
-            <div>username</div>
+            {% if current_user %}
+              {% if current_user.photo %}
+                <div>ph.profile</div>
+              {% endif %}
+            <div style="padding-left: 4px;">
+              {{ current_user.username }}
+            </div>
+            {% endif %}
           </div>
           <div class="flex wt ">
             <div>points</div>
