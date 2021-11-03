@@ -186,12 +186,13 @@
         </div>
         <div class="col-4 flex flex-evenly">
           <div class="flex wt ">
-            {% if current_user %}
-              {% if current_user.photo %}
+            {% if current_user.username %}
+<!--               {% if current_user.photo %}
                 <div>ph.profile</div>
               {% endif %}
-            <div style="padding-left: 4px;">
-              {{ current_user.username }}
+ -->              
+            <div class=" flex flex-centerize" style="padding-left:4px; color:#3c4042; font-size:12px; font-style:oblique; ">
+              welcome {{ current_user.username }}
             </div>
             {% endif %}
           </div>
@@ -217,13 +218,21 @@
             {% for post in posts %}}
             <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
               <div class="col-12 flex flex-between wt writing-padding" >
-                <div class="col-4 flex flex-centerize">administrateur</div>
+                {% for user in users %}
+                  {% if user.id == post.relative_index %}
+                    <div class="col-4 flex flex-centerize">
+                      by. {{ user.username }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
                 <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
-                <div class="col-4 xl-font flex flex-centerize">
-                  <button class="transparent-btn" style="color: white;">
-                    <i class="fas fa-align-justify"></i>
-                  </button>
-                </div>
+                {% if current_user.id == post.relative_index%}
+                  <div class="col-4 xl-font flex flex-centerize">
+                    <button class="transparent-btn" style="color: white;">
+                      <i class="fas fa-align-justify"></i>
+                    </button>
+                  </div>
+                {% endif %}
               </div>
               <div id="post-description" class="col-12 flex flex-centerize wt" >
                 <h4 class="" style="font-family: cursive;">
@@ -231,7 +240,9 @@
                 </h4> 
               </div>
               <div class="col-12 flex flex-centerize wt serif" style="height:43vh;">
-                {{post.post_body}}
+                <div style="height:100%; width:100%; overflow:auto; text-align:justify;">
+                  {{post.post_body}}
+                </div>
               </div>
               <div class="col-12 wt flex">
                 <div class="col-6 text-centerize stander-border no-edges">
@@ -284,6 +295,7 @@
           <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register </button></li></div>
           <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button></li></div>
           <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li></div>
+          <div> <a href="{{ url_for('out') }}"> <button class="transparent-btn"> <i class="fas fa-sign-out-alt"></i> logout</button></a></li></div>
       </div>
       <button id="quit-options" class="wt serif writing-padding no-border">
         <i class="fas fa-times"></i>

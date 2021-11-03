@@ -16,3 +16,4 @@ class posts (datab.Model):
     date= datab.Column(datab.String(255), default=datetime.utcnow())
     post_title= datab.Column(datab.String(length=50) )
     post_body= datab.Column(datab.String(length=255))
+    relative_index= datab.Column(datab.Integer(), datab.ForeignKey(users.id))

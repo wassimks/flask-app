@@ -1,3 +1,5 @@
+from flask.helpers import url_for
+from flask_login.utils import login_required, logout_user
 from app import app, datab, models
 from flask import render_template, request, redirect
 
@@ -11,6 +13,7 @@ def get_home():
 	form=request.form
 	args=request.args
 	method=request.method
+	admin=''
 
 	if method == "POST":
 		# try:
@@ -60,15 +63,22 @@ def get_home():
 				# db=get_db()
 				# time=
 
-				n_post=models.posts(
-					date=created,
-					post_title=post_title,
-					post_body=post_body,
-				)
-				datab.session.add(n_post)
-				datab.session.commit()
-				print('post added to posts class from models file, and post had should be posted')
+				@login_required
+				def add_post():
+					n_post=models.posts(
+						date=created,
+						post_title=post_title,
+						post_body=post_body,
+						relative_index=current_user.id
+					)
+					datab.session.add(n_post)
+					datab.session.commit()
+					print('post added to posts class from models file, and post had should be posted')
 
+				add_post()
+				id= models.posts.relative_index
+				# else:
+				# 	print('you need to first login so you can add posts')
 				# db.execute(
 				# 	'INSERT INTO posts(title,post) VALUES(?,?)', (post_title, post_body)
 				# )
@@ -80,10 +90,23 @@ def get_home():
 			print('no title were found for this post')
 
 	# db=get_db()
+	
 	users=models.users.query.all()
 	posts=models.posts.query.all()
 
 	return render_template("home.html"
 	,users=users
 	,posts=posts
+	,admin=admin
 	)
+
+@app.route('/logout')
+def out():
+	logout_user()
+	return redirect(url_for('get_home'))
+
+
+
+""" def find_admin(id):
+	user = users.query().filter_by(id=id)
+	return user """
