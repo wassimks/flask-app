@@ -54,6 +54,32 @@ def get_home():
 		else:
 			print('no user name were sent')
 
+	if method == "POST":
+		try:
+			datab.create_all()
+		except:
+			pass
+		print('1st step')
+		if "username_to_login" in form and form['username_to_login']:
+			print('2nd step')
+			if "password_to_login" in form and form['password_to_login']:
+				username_to_check=form['username_to_login']
+				password_to_check=form['password_to_login']
+
+				user_found=models.users.query.filter_by(username=username_to_check).first()
+				if user_found.username :
+					if user_found.password==password_to_check:
+						login_user(user_found)
+					else:
+						print('wrong password were given')
+				else:
+					print('no user with the specified username were found')
+ 			# else :
+			# 	 print('no password to login or wrong password')
+		else :
+			print('no username sent to login or wrong username')
+		return redirect(request.url)
+
 	if method=="POST":
 		if "post-title" in form and form["post-title"]:
 			if "post-body" in form and form['post-body']:
@@ -105,6 +131,15 @@ def out():
 	logout_user()
 	return redirect(url_for('get_home'))
 
+""" @app.route('/login')
+def login():
+	aimed_user=models.users.query().filter_by(username=x)
+	if aimed_user.username :
+		login_user(aimed_user)
+	else:
+		print ('user not found')
+	return redirect(url_for('get_home'))
+ """
 
 
 """ def find_admin(id):

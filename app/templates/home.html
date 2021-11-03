@@ -48,6 +48,7 @@
     .no-overflow{overflow: auto;}
     .no-edges{border-radius:5px;}
     .no-border{border-width: 0px; outline-width: 0px;}
+    .no-display{display: none;}
     .full-page-height{min-height:100vh;}
     .full-height{height:100%;}
     .text-centerize{text-align: center;}
@@ -73,7 +74,7 @@
       top:0px;
       width:100vw;
       height:100vh;
-      background-color:rgba(0,0,0,0.7);
+      background-color:rgba(0,0,0,0.85);
       display: flex;
     }
     .blue-box-shadow{
@@ -270,23 +271,57 @@
 
     <div id="sign-in-form">
       <div class="alert-full flex flex-centerize">
-        <div class="flex flex-centerize col-10">
+        <!-- register -->
+        <div id="register_form" class="flex flex-centerize flex-column col-10">
           <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
-            <span class="wt flex flex-centerize serif"> Create a username:</span>
-              <input name="new_username" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
-            <span class="wt flex flex-centerize serif"> Create password: </span>
-              <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder=""><br><br>
-            <span class="wt flex flex-centerize serif">Confirm password: </span>
-              <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br>
+            <span class="wt flex flex-centerize serif"> Your username:</span>
+              <input name="username_to_login" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
+            <span class="wt flex flex-centerize serif"> Your password: </span>
+              <input name="password_to_login" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
+            <!-- <span class="wt flex flex-centerize serif">Confirm password: </span>
+              <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br> -->
             <span class="wt flex flex-centerize serif"></span>
               <div class="flex flex-evenly">
-                <button id="validate" class="wt serif col-2 no-edges writing-padding no-border" type="submit">validate</button>
+                <button id="validate_to_login" class="wt serif col-2 no-edges writing-padding no-border" type="submit" style="background-color: #005457">Login</button>
               </div>
             </form>
-            <!-- <button id="exit" class="wt serif writing-padding no-border">
-              <i class="fas fa-times"></i>
-            </button> -->
+            <div class="wt col-8 serif flex flex-centerize">
+              you don't have an account? 
+              <button class="to_log transparent-btn">
+                <a href="#" style="padding:0px 4px ;">
+                  here
+                </a>
+              </button>
+              to create one
+            </div>
         </div>
+
+        <!-- login -->
+        <div id="login_form" class="no-display col-10 flex flex-centerize" style="position:fixed;">
+          <div class="flex flex-centerize flex-column col-12 ">
+            <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
+              <span class="wt flex flex-centerize serif"> Create a username:</span>
+                <input name="new_username" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
+              <span class="wt flex flex-centerize serif"> Create password: </span>
+                <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder=""><br><br>
+              <span class="wt flex flex-centerize serif">Confirm password: </span>
+                <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br>
+              <span class="wt flex flex-centerize serif"></span>
+                <div class="flex flex-evenly">
+                  <button id="validate" class="wt serif col-2 no-edges writing-padding no-border" type="submit">validate</button>
+                </div>
+              </form>
+              <div class="wt col-8 serif flex flex-centerize">
+                do you already have an account? click 
+                  <button id="" class="transparent-btn to_log">
+                    <a href="#" style="padding:0px 4px ;">
+                      here
+                    </a>
+                  </button>
+                to login
+              </div>
+          </div>
+          </div>
       </div>
     </div>
 
@@ -306,11 +341,21 @@
       <div id="post-form" class="col-12 flex flex-centerize">
         <div style="margin: 20px; overflow: auto;">
           <form action="" method="POST" class="flex flex-evenly flex-column" >
-            <input name="post-title" type="text" class="no-edges no-border text-centerize serif" placeholder="title">
+            <div class="flex flex-centerize flex-column">
+              <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
+                Simplify the post with a title:
+              </div>
+              <input name="post-title" type="text" class="no-edges no-border text-centerize serif col-10" placeholder="title">
+            </div>
             <div>
               <br><br>
             </div>
-            <textarea name="post-body" id="" cols="30" rows="5"></textarea>
+            <div class="flex flex-centerize flex-column">
+              <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
+                Here you can write the post main content:
+              </div>
+              <textarea name="post-body" id="" cols="30" rows="5" placeholder="Post content" class="writing-padding" style="text-align: center;" ></textarea>
+            </div>
             <button id="post" class="wt serif col-12 writing-padding no-border" type="submit">post</button>
           </form>
         </div>
@@ -357,6 +402,11 @@
         $('#sign-in-form').fadeOut(150)
 
         $('#options').delay(200).animate({height:'0vh'}, 200)
+      })
+
+      $('.to_log').click(function(){
+        $('#login_form').fadeToggle(200)
+        $('#register_form').fadeToggle(200)
       })
 
     })
