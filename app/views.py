@@ -16,11 +16,6 @@ def get_home():
 	admin=''
 
 	if method == "POST":
-		# try:
-		# 	init_db()
-		# except:
-		# 	pass
-
 		try:
 			datab.create_all()
 		except:
@@ -59,9 +54,9 @@ def get_home():
 			datab.create_all()
 		except:
 			pass
-		print('1st step')
+		# print('1st step')
 		if "username_to_login" in form and form['username_to_login']:
-			print('2nd step')
+			# print('2nd step')
 			if "password_to_login" in form and form['password_to_login']:
 				username_to_check=form['username_to_login']
 				password_to_check=form['password_to_login']
@@ -70,50 +65,44 @@ def get_home():
 				if user_found.username :
 					if user_found.password==password_to_check:
 						login_user(user_found)
+						return redirect(request.url)
 					else:
 						print('wrong password were given')
 				else:
 					print('no user with the specified username were found')
- 			# else :
-			# 	 print('no password to login or wrong password')
+			else:
+				print('no password to login or wrong password')
 		else :
 			print('no username sent to login or wrong username')
-		return redirect(request.url)
 
-	if method=="POST":
+	if method == "POST":
+		# print('first step to post validated ')
 		if "post-title" in form and form["post-title"]:
+			# print('second step to post validated ')
 			if "post-body" in form and form['post-body']:
+				# print('third step to post validated ')
 				post_title = form["post-title"]
 				post_body=form["post-body"]
 				created=datetime.datetime.now().strftime('%B %d %Y - %H:%M')
 				# db=get_db()
 				# time=
 
-				@login_required
-				def add_post():
-					n_post=models.posts(
-						date=created,
-						post_title=post_title,
-						post_body=post_body,
-						relative_index=current_user.id
-					)
-					datab.session.add(n_post)
-					datab.session.commit()
-					print('post added to posts class from models file, and post had should be posted')
-
-				add_post()
-				id= models.posts.relative_index
-				# else:
-				# 	print('you need to first login so you can add posts')
-				# db.execute(
-				# 	'INSERT INTO posts(title,post) VALUES(?,?)', (post_title, post_body)
-				# )
-				# db.commit()
+				n_post=models.posts(
+					date=created,
+					post_title=post_title,
+					post_body=post_body,
+					relative_index=current_user.id
+				)
+				datab.session.add(n_post)
+				datab.session.commit()
+				print('post added to posts class from models file, and post had should be posted')
 				return redirect(request.url)
 			else:
 				print("no body were found for thr post")
 		else:
 			print('no title were found for this post')
+	else:
+		print('method not equal to post '+" ; "+ method)
 
 	# db=get_db()
 	

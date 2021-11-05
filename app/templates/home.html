@@ -213,8 +213,13 @@
         <div class="col-3"></div>
         <div class="col-6 flex flex-column flex-evenly">
           <div style="max-height: 92vh; overflow: auto;">
-            <div id="posts-scam" class="flex wt no-overflow no-edges dark-mode-item-bg">
-              information generales sur les postes disponible
+            <div id="posts-scam" class="flex flex-evenly flex-column wt no-overflow no-edges dark-mode-item-bg writing-padding">
+              {% for post in posts%}
+              <div class="col-10" style="height:20%;">
+                <span> title: {{ post.post_title }} </span>
+                <span> created: {{ post.date }}</span>
+              </div>
+              {% endfor %}
             </div>
             {% for post in posts %}}
             <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
@@ -356,7 +361,7 @@
               </div>
               <textarea name="post-body" id="" cols="30" rows="5" placeholder="Post content" class="writing-padding" style="text-align: center;" ></textarea>
             </div>
-            <button id="post" class="wt serif col-12 writing-padding no-border" type="submit">post</button>
+            <button id="post" class="wt serif col-12 writing-padding no-border">post</button>
           </form>
         </div>
       </div>
