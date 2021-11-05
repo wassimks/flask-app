@@ -87,6 +87,7 @@
       border-width: 0px;
       border-color: blue;
     }
+    .to-control{overflow: hidden; transition: 0.4s;}
     
     
     #sign-in-form{display: none;}
@@ -215,9 +216,17 @@
           <div style="max-height: 92vh; overflow: auto;">
             <div id="posts-scam" class="flex flex-evenly flex-column wt no-overflow no-edges dark-mode-item-bg writing-padding">
               {% for post in posts%}
-              <div class="col-10" style="height:20%;">
-                <span> title: {{ post.post_title }} </span>
-                <span> created: {{ post.date }}</span>
+              <div class="col-12 flex flex-around" style="height:20%;">
+                <div class="col-10 flex flex-evenly" >
+                  <table class="col-12">
+                    <tr>
+                      <td style="width:40%;" class="no-overflow">title: {{ post.post_title }} </td>
+                      <td>created: {{ post.date }}</td>
+                    </tr>
+                  </table>
+                  <!-- <span> title: {{ post.post_title }} </span>
+                  <span> created: {{ post.date }}</span> -->
+                </div>
               </div>
               {% endfor %}
             </div>
@@ -233,10 +242,28 @@
                 {% endfor %}
                 <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
                 {% if current_user.id == post.relative_index%}
-                  <div class="col-4 xl-font flex flex-centerize">
+                  <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;" aria-expanded="true">
+                    <!-- <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-align-justify"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item active" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                      </ul>
+                    </div>                     -->
                     <button class="transparent-btn" style="color: white;">
                       <i class="fas fa-align-justify"></i>
                     </button>
+                    <div class="reltinize" style="display:none; "> {{ post.id }} </div>
+                    <div class="col-12 writing-padding" style="position: absolute; top:100%; background-color: rgba(0,0,0,0.9);">
+                      <a href="{{ url_for('get_home', edit=post.id)}} "> <div style="font-size:14px;">edit post</div></a>
+                      <div style="font-size:14px;">delete post</div>
+                    </div>
+
                   </div>
                 {% endif %}
               </div>
@@ -344,7 +371,7 @@
 
     <div id="container-post-form" class="col-5">
       <div id="post-form" class="col-12 flex flex-centerize">
-        <div style="margin: 20px; overflow: auto;">
+        <div style="margin: 20px; overflow:hidden;">
           <form action="" method="POST" class="flex flex-evenly flex-column" >
             <div class="flex flex-centerize flex-column">
               <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
@@ -414,6 +441,28 @@
         $('#register_form').fadeToggle(200)
       })
 
-    })
+
+      $('.to-control').mouseup(function(){
+        var stat=$(this).css('overflow')
+        if($(this).css('overflow')=='hidden'){
+          $(this).css("transition","0.4s")
+          $(this).css("overflow","visible")
+        }
+        else{
+             $(this).css("overflow","hidden")
+          }
+      })
+
+   })
   </script>
   </html>
+
+
+
+
+
+
+
+
+
+  <!-- i need to make sure how to allow editin posts !? -->

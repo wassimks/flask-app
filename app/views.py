@@ -1,7 +1,7 @@
 from flask.helpers import url_for
 from flask_login.utils import login_required, logout_user
 from app import app, datab, models
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, current_app
 
 # from app.db import get_db, init_db
 from app.models import users
@@ -62,7 +62,7 @@ def get_home():
 				password_to_check=form['password_to_login']
 
 				user_found=models.users.query.filter_by(username=username_to_check).first()
-				if user_found.username :
+				if user_found and user_found.username :
 					if user_found.password==password_to_check:
 						login_user(user_found)
 						return redirect(request.url)
@@ -103,9 +103,16 @@ def get_home():
 			print('no title were found for this post')
 	else:
 		print('method not equal to post '+" ; "+ method)
-
-	# db=get_db()
 	
+
+	if 'edit' in args and args['edit']:
+		print(args['edit'])
+		id= args['edit']
+		p= get_post(id=id)
+
+		print(p)
+
+
 	users=models.users.query.all()
 	posts=models.posts.query.all()
 
@@ -120,17 +127,6 @@ def out():
 	logout_user()
 	return redirect(url_for('get_home'))
 
-""" @app.route('/login')
-def login():
-	aimed_user=models.users.query().filter_by(username=x)
-	if aimed_user.username :
-		login_user(aimed_user)
-	else:
-		print ('user not found')
-	return redirect(url_for('get_home'))
- """
-
-
-""" def find_admin(id):
-	user = users.query().filter_by(id=id)
-	return user """
+def get_post(id):
+	db=models.posts.query.filter_by(id=id).first()
+	print (db)
