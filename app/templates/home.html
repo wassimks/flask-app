@@ -1,249 +1,404 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="app/templates/statics/CSS/dark_mode.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <!-- <link rel="stylesheet" href="app/templates/statics/CSS/dark_mode.css">
     <link rel="stylesheet" href="/templates/statics/CSS/StanderCss.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>    <title>Home</title>
-    <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
-    <style>
-    *{margin:0px; padding:0px; box-sizing: border-box; }
-    *::-webkit-scrollbar{display: none;}
-    html{overflow-x: hidden;}
-    body, html{min-height: 100vh;}
-    .dark-mode-bg{
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
+  <title>Home</title>
+  <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body,
+    html {
+      min-height: 100vh;
+    }
+
+    .dark-mode-bg {
       background-color: #1f1f1f;
     }
-    .dark-mode-item-bg{
-      background-color:#292929
+
+    .dark-mode-item-bg {
+      background-color: #292929
     }
-    .col-1{width:8.33%;}
-    .col-2{width:16.66%;}
-    .col-3{width:25%;}
-    .col-4{width:33.33%;}
-    .col-5{width:41.66%;}
-    .col-6{width:50%;}
-    .col-7{width:58.33%;}
-    .col-8{width:66.66%;}
-    .col-9{width:75%;}
-    .col-10{width:83.33%;}
-    .col-11{width:91.66;}
-    .col-12{width:100%;}
-    .flex{display:flex;}
-    .flex-centerize{
+
+    .col-1 {
+      width: 8.33%;
+    }
+
+    .col-2 {
+      width: 16.66%;
+    }
+
+    .col-3 {
+      width: 25%;
+    }
+
+    .col-4 {
+      width: 33.33%;
+    }
+
+    .col-5 {
+      width: 41.66%;
+    }
+
+    .col-6 {
+      width: 50%;
+    }
+
+    .col-7 {
+      width: 58.33%;
+    }
+
+    .col-8 {
+      width: 66.66%;
+    }
+
+    .col-9 {
+      width: 75%;
+    }
+
+    .col-10 {
+      width: 83.33%;
+    }
+
+    .col-11 {
+      width: 91.66;
+    }
+
+    .col-12 {
+      width: 100%;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-centerize {
       justify-content: center;
       align-items: center;
     }
-    .flex-column{flex-flow: column;}
-    .flex-evenly{justify-content: space-evenly;}
-    .flex-between{justify-content: space-between;}
-    .flex-around{justify-content: space-around;}
-    .wt{color:white;}
-    .writing-padding{padding:2px 4px;}
-    .no-overflow{overflow: auto;}
-    .no-edges{border-radius:5px;}
-    .no-border{border-width: 0px; outline-width: 0px;}
-    .no-display{display: none;}
-    .full-page-height{min-height:100vh;}
-    .full-height{height:100%;}
-    .text-centerize{text-align: center;}
-    .xl-font{font-size: x-large;}
-    .serif{font-family: 'aldus', serif;}
-    .stander-border{border:1px solid white;}
-    .profile-image{
-      height:30px;
-      width:30px;
+
+    .flex-column {
+      flex-flow: column;
+    }
+
+    .flex-evenly {
+      justify-content: space-evenly;
+    }
+
+    .flex-between {
+      justify-content: space-between;
+    }
+
+    .flex-around {
+      justify-content: space-around;
+    }
+
+    .wt {
+      color: white;
+    }
+
+    .writing-padding {
+      padding: 2px 4px;
+    }
+
+    .no-overflow {
+      overflow: auto;
+    }
+
+    .no-edges {
+      border-radius: 5px;
+    }
+
+    .no-border {
+      border-width: 0px;
+      outline-width: 0px;
+    }
+
+    .no-display {
+      display: none;
+    }
+
+    .full-page-height {
+      min-height: 100vh;
+    }
+
+    .full-height {
+      height: 100%;
+    }
+
+    .text-centerize {
+      text-align: center;
+    }
+
+    .xl-font {
+      font-size: x-large;
+    }
+
+    .serif {
+      font-family: 'aldus', serif;
+    }
+
+    .stander-border {
+      border: 1px solid white;
+    }
+
+    .white-bg {
+      background-color: white;
+    }
+
+    .profile-image {
+      height: 30px;
+      width: 30px;
       border-radius: 90px;
     }
-    .pubcart{
+
+    .pubcart {
       height: 90vh;
       margin: 1vh 5vw;
     }
-    .transparent-btn{
+
+    .transparent-btn {
       border-width: 0px;
       background-color: transparent;
       color: #03dac5;
     }
-    .alert-full{
+
+    .alert-full {
       position: fixed;
-      top:0px;
-      width:100vw;
-      height:100vh;
-      background-color:rgba(0,0,0,0.85);
+      top: 0px;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
     }
-    .blue-box-shadow{
+
+    .blue-box-shadow {
       outline-width: 0px;
       border-width: 0px;
     }
-    .blue-box-shadow:focus{
+
+    .blue-box-shadow:focus {
       box-shadow: 1px 2px 2px #018786;
       outline-width: 0px;
       border-width: 0px;
       border-color: blue;
     }
-    .to-control{overflow: hidden; transition: 0.4s;}
-    
-    
-    #sign-in-form{display: none;}
-    #navbar{
+
+    .to-control {
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+
+    #sign-in-form {
+      display: none;
+    }
+
+    #navbar {
       padding: 10px;
     }
-    #posts-scam{
-      height:22vh;
+
+    #posts-scam {
+      height: 22vh;
       margin: 1vh 0vw;
     }
-    #validate{
+
+    #validate {
       background-color: #005457;
     }
-    #post{
+
+    #post {
       background-color: #005457;
     }
-    #skip{
+
+    #skip {
       background-color: #b00a4c;
       position: absolute;
       top: 0vh;
       right: 0px;
       padding: 10px;
     }
-    #quit-options{
+
+    #quit-options {
       background-color: #b00a4c;
       position: absolute;
       top: 0vh;
       right: 0px;
       padding: 5px;
     }
-    #exit{
+
+    #exit {
       background-color: #b00a4c;
       position: fixed;
       top: 0px;
       right: 0px;
       padding: 10px;
     }
-    #post-container{
+
+    #post-container {
       width: 100%;
       height: 66vh;
       padding: 0vw 6vw;
     }
-    #post-description{
-      height:7vh;
+
+    #post-description {
+      height: 7vh;
     }
-    #container-post-form{
+
+    #container-post-form {
       position: fixed;
-      top:8vh;
-      right:16.66%;
-      height:100vh;
+      top: 8vh;
+      right: 16.66%;
+      height: 100vh;
       width: 0%;
       overflow: hidden;
     }
-    #post-form{
-      background-color: rgba(0,0,0,0.8);
-      height:75%;
+
+    #post-form {
+      background-color: rgba(0, 0, 0, 0.8);
+      height: 75%;
       border-left: 2px solid dotted;
       border-bottom: 2px solid dotted;
       border-bottom-left-radius: 55px;
     }
-    #options{
+
+    #options {
       position: fixed;
-      top:8vh;
-      right:0px;
-      height:0vh;
+      top: 8vh;
+      right: 0px;
+      height: 0vh;
       /* width: 0%; */
       overflow: hidden;
-      background-color:rgba(0,0,0,0.8);
+      background-color: rgba(0, 0, 0, 0.8);
       box-shadow: -2px 0px 4px #2f2f2f;
       z-index: 10;
     }
-    </style>
-  </head>
-  <body>
 
-    <div class="dark-mode-bg no-overflow" style="height: 100vh;">
+    #container_for_editing {
+      width: 0px;
+      height: 0px;
+      overflow: hidden;
+    }
 
-      <div id="navbar" style="position:fixed; top:0px; width: 100%; height:8vh;" class=" flex dark-mode-item-bg writing-padding">
-        <div class="col-4 wt flex">
-          <div class="profile-image" >
-            <img style="width:100%; height:100%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg" alt="">
-          </div>
-          <span style="font-family:'hand writing',cursive; font-size:x-large; padding-left: 4px;">mede-univ</span>
+    .hide-scroll {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dark-mode-bg no-overflow" style="height: 100vh;">
+
+    <div id="navbar" style="position:fixed; top:0px; width: 100%; height:8vh;"
+      class=" flex dark-mode-item-bg writing-padding">
+      <div class="col-4 wt flex">
+        <div class="profile-image">
+          <img style="width:100%; height:100%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
+            alt="">
         </div>
-        <div class="col-4 flex flex-evenly wt">
-          <div class="xl-font">
-            <button class="transparent-btn"> <i class="fas fa-trophy"></i> </button>
-          </div>
-          <div class="xl-font">
-            <button class="transparent-btn"><i class="fab fa-readme"></i></button>
-          </div>
-          <div class="xl-font">
-            <button class="transparent-btn"> <i class="far fa-user-circle"></i></button>
-          </div>
-          <div class="xl-font">
-            <button id="" class="transparent-btn"> <i class="fas fa-ellipsis-h"></i> </button>
-          </div>
+        <span style="font-family:'hand writing',cursive; font-size:x-large; padding-left: 4px;">mede-univ</span>
+      </div>
+      <div class="col-4 flex flex-evenly wt">
+        <div class="xl-font">
+          <button class="transparent-btn"> <i class="fas fa-trophy"></i> </button>
         </div>
-        <div class="col-4 flex flex-evenly">
-          <div class="flex wt ">
-            {% if current_user.username %}
-<!--               {% if current_user.photo %}
-                <div>ph.profile</div>
-              {% endif %}
- -->              
-            <div class=" flex flex-centerize" style="padding-left:4px; color:#3c4042; font-size:12px; font-style:oblique; ">
-              welcome {{ current_user.username }}
-            </div>
-            {% endif %}
-          </div>
-          <div class="flex wt ">
-            <div>points</div>
-            <div>points.ph</div>
-          </div>
-          <div class="flex wt">
-            <button id="more-options" class="transparent-btn" style="color: white;">
-              more
-            </button>
-          </div>
+        <div class="xl-font">
+          <button class="transparent-btn"><i class="fab fa-readme"></i></button>
+        </div>
+        <div class="xl-font">
+          <button class="transparent-btn"> <i class="far fa-user-circle"></i></button>
+        </div>
+        <div class="xl-font">
+          <button id="" class="transparent-btn"> <i class="fas fa-ellipsis-h"></i> </button>
         </div>
       </div>
+      <div class="col-4 flex flex-evenly">
+        <div class="flex wt ">
+          {% if current_user.username %}
+          <!--               {% if current_user.photo %}
+                <div>ph.profile</div>
+              {% endif %}
+ -->
+          <div class=" flex flex-centerize"
+            style="padding-left:4px; color:#3c4042; font-size:12px; font-style:oblique; ">
+            welcome {{ current_user.username }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="flex wt ">
+          <div>points</div>
+          <div>points.ph</div>
+        </div>
+        <div class="flex wt">
+          <button id="more-options" class="transparent-btn" style="color: white;">
+            more
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <div class="col-12 flex no-overflow" style="margin-top:8vh; height:92vh;">
-        <div class="col-3"></div>
-        <div class="col-6 flex flex-column flex-evenly">
-          <div style="max-height: 92vh; overflow: auto;">
-            <div id="posts-scam" class="flex flex-evenly flex-column wt no-overflow no-edges dark-mode-item-bg writing-padding">
-              {% for post in posts%}
-              <div class="col-12 flex flex-around" style="height:20%;">
-                <div class="col-10 flex flex-evenly" >
-                  <table class="col-12">
-                    <tr>
-                      <td style="width:40%;" class="no-overflow">title: {{ post.post_title }} </td>
-                      <td>created: {{ post.date }}</td>
-                    </tr>
-                  </table>
-                  <!-- <span> title: {{ post.post_title }} </span>
+    <div class="col-12 flex no-overflow" style="margin-top:8vh; height:92vh;">
+      <div class="col-3"></div>
+      <div class="col-6 flex flex-column flex-evenly">
+        <div style="max-height: 92vh; overflow: auto;">
+          <div id="posts-scam"
+            class="flex flex-evenly flex-column wt no-overflow no-edges dark-mode-item-bg writing-padding">
+            {% for post in posts%}
+            <div class="col-12 flex flex-around" style="height:20%;">
+              <div class="col-10 flex flex-evenly">
+                <table class="col-12">
+                  <tr>
+                    <td style="width:40%;" class="no-overflow">title: {{ post.post_title }} </td>
+                    <td>created: {{ post.date }}</td>
+                  </tr>
+                </table>
+                <!-- <span> title: {{ post.post_title }} </span>
                   <span> created: {{ post.date }}</span> -->
-                </div>
               </div>
-              {% endfor %}
             </div>
-            {% for post in posts %}}
-            <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
-              <div class="col-12 flex flex-between wt writing-padding" >
-                {% for user in users %}
-                  {% if user.id == post.relative_index %}
-                    <div class="col-4 flex flex-centerize">
-                      by. {{ user.username }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-                <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
-                {% if current_user.id == post.relative_index%}
-                  <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;" aria-expanded="true">
-                    <!-- <div class="dropdown">
+            {% endfor %}
+          </div>
+          {% for post in posts %}}
+          <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
+            <div class="col-12 flex flex-between wt writing-padding">
+              {% for user in users %}
+              {% if user.id == post.relative_index %}
+              <div class="col-4 flex flex-centerize">
+                by. {{ user.username }}
+              </div>
+              {% endif %}
+              {% endfor %}
+              <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
+              {% if current_user.id == post.relative_index%}
+              <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;"
+                aria-expanded="true">
+                <!-- <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-align-justify"></i>
                       </button>
@@ -255,214 +410,265 @@
                         <li><a class="dropdown-item" href="#">Separated link</a></li>
                       </ul>
                     </div>                     -->
-                    <button class="transparent-btn" style="color: white;">
-                      <i class="fas fa-align-justify"></i>
-                    </button>
-                    <div class="reltinize" style="display:none; "> {{ post.id }} </div>
-                    <div class="col-12 writing-padding" style="position: absolute; top:100%; background-color: rgba(0,0,0,0.9);">
-                      <a href="{{ url_for('get_home', edit=post.id)}} "> <div style="font-size:14px;">edit post</div></a>
-                      <div style="font-size:14px;">delete post</div>
-                    </div>
+                <button class="transparent-btn" style="color: white;">
+                  <i class="fas fa-align-justify"></i>
+                </button>
+                <div class="reltinize" style="display:none; "> {{ post.id }} </div>
+                <div class="col-12 writing-padding"
+                  style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11;">
+                  <button id="edit" class="transparent-btn">
+                    <!-- <a href="#"> -->
+                    <div style="font-size:14px;">edit post</div>
+                    <!-- </a> -->
+                  </button>
+                  <div style="font-size:14px;">delete post</div>
+                </div>
 
+              </div>
+              {% endif %}
+            </div>
+            <div id="post-description" class="col-12 flex flex-centerize wt">
+              <h4 class="" style="font-family: cursive;">
+                {{post.post_title}}
+              </h4>
+            </div>
+            <div class="col-12 flex flex-centerize wt serif" style="height:43vh;">
+              <div id="post_body" class="hide-scroll"
+                style="height:100%; width:100%; overflow:auto; text-align:justify; position:relative;">
+                {{post.post_body}}
+                <form action="" method="POST" class="hide-scroll">
+                  <div id="container_for_editing"
+                    class="hide-scroll col-12 flex flex-centerize flex-column serif white-bg dark-mode-bg"
+                    style="position:absolute; top:0px;">
+                    <textarea name="edited_post" id="" class="hide-scroll dark-mode-bg wt writing-padding"
+                      style="height:100%; width:100%; overflow:auto; text-align:justify; border-width: 0px; ">
+                        {{post.post_body}}
+                    </textarea>
+                    <button type="submit" class=" transparent-btn col-12 dark-mode-bg no-border" style="background-color:#1f1f1f;">done</button>
+                    <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display"> 
                   </div>
-                {% endif %}
-              </div>
-              <div id="post-description" class="col-12 flex flex-centerize wt" >
-                <h4 class="" style="font-family: cursive;">
-                  {{post.post_title}}
-                </h4> 
-              </div>
-              <div class="col-12 flex flex-centerize wt serif" style="height:43vh;">
-                <div style="height:100%; width:100%; overflow:auto; text-align:justify;">
-                  {{post.post_body}}
-                </div>
-              </div>
-              <div class="col-12 wt flex">
-                <div class="col-6 text-centerize stander-border no-edges">
-                  <button class="transparent-btn">
-                    <i class="far fa-heart"></i>
-                  </button> 
-                </div>
-                <div class="col-6 text-centerize stander-border no-edges">
-                  <button class="transparent-btn">
-                    <i class="far fa-comment-alt"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-12">
-
+                </form>
               </div>
             </div>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="col-3"></div>
-      </div>
+            <div class="col-12 wt flex">
+              <div class="col-6 text-centerize stander-border no-edges">
+                <button class="transparent-btn">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+              <div class="col-6 text-centerize stander-border no-edges">
+                <button class="transparent-btn">
+                  <i class="far fa-comment-alt"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-12">
 
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-3"></div>
     </div>
 
-    <div id="sign-in-form">
-      <div class="alert-full flex flex-centerize">
-        <!-- register -->
-        <div id="register_form" class="flex flex-centerize flex-column col-10">
-          <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
-            <span class="wt flex flex-centerize serif"> Your username:</span>
-              <input name="username_to_login" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
-            <span class="wt flex flex-centerize serif"> Your password: </span>
-              <input name="password_to_login" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
-            <!-- <span class="wt flex flex-centerize serif">Confirm password: </span>
+  </div>
+
+  <div id="sign-in-form">
+    <div class="alert-full flex flex-centerize">
+      <!-- register -->
+      <div id="register_form" class="flex flex-centerize flex-column col-10">
+        <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
+          <span class="wt flex flex-centerize serif"> Your username:</span>
+          <input name="username_to_login" type="text" class="no-edges text-centerize writing-padding blue-box-shadow"
+            placeholder="username"><br><br>
+          <span class="wt flex flex-centerize serif"> Your password: </span>
+          <input name="password_to_login" type="password"
+            class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
+          <!-- <span class="wt flex flex-centerize serif">Confirm password: </span>
               <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br> -->
+          <span class="wt flex flex-centerize serif"></span>
+          <div class="flex flex-evenly">
+            <button id="validate_to_login" class="wt serif col-2 no-edges writing-padding no-border" type="submit"
+              style="background-color: #005457">Login</button>
+          </div>
+        </form>
+        <div class="wt col-8 serif flex flex-centerize">
+          you don't have an account?
+          <button class="to_log transparent-btn">
+            <a href="#" style="padding:0px 4px ;">
+              here
+            </a>
+          </button>
+          to create one
+        </div>
+      </div>
+
+      <!-- login -->
+      <div id="login_form" class="no-display col-10 flex flex-centerize" style="position:fixed;">
+        <div class="flex flex-centerize flex-column col-12 ">
+          <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
+            <span class="wt flex flex-centerize serif"> Create a username:</span>
+            <input name="new_username" type="text" class="no-edges text-centerize writing-padding blue-box-shadow"
+              placeholder="username"><br><br>
+            <span class="wt flex flex-centerize serif"> Create password: </span>
+            <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow"
+              placeholder=""><br><br>
+            <span class="wt flex flex-centerize serif">Confirm password: </span>
+            <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow"
+              placeholder="confirm password"><br><br><br><br>
             <span class="wt flex flex-centerize serif"></span>
-              <div class="flex flex-evenly">
-                <button id="validate_to_login" class="wt serif col-2 no-edges writing-padding no-border" type="submit" style="background-color: #005457">Login</button>
-              </div>
-            </form>
-            <div class="wt col-8 serif flex flex-centerize">
-              you don't have an account? 
-              <button class="to_log transparent-btn">
-                <a href="#" style="padding:0px 4px ;">
-                  here
-                </a>
-              </button>
-              to create one
+            <div class="flex flex-evenly">
+              <button id="validate" class="wt serif col-2 no-edges writing-padding no-border"
+                type="submit">validate</button>
             </div>
-        </div>
-
-        <!-- login -->
-        <div id="login_form" class="no-display col-10 flex flex-centerize" style="position:fixed;">
-          <div class="flex flex-centerize flex-column col-12 ">
-            <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
-              <span class="wt flex flex-centerize serif"> Create a username:</span>
-                <input name="new_username" type="text" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="username"><br><br>
-              <span class="wt flex flex-centerize serif"> Create password: </span>
-                <input name="password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder=""><br><br>
-              <span class="wt flex flex-centerize serif">Confirm password: </span>
-                <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br>
-              <span class="wt flex flex-centerize serif"></span>
-                <div class="flex flex-evenly">
-                  <button id="validate" class="wt serif col-2 no-edges writing-padding no-border" type="submit">validate</button>
-                </div>
-              </form>
-              <div class="wt col-8 serif flex flex-centerize">
-                do you already have an account? click 
-                  <button id="" class="transparent-btn to_log">
-                    <a href="#" style="padding:0px 4px ;">
-                      here
-                    </a>
-                  </button>
-                to login
-              </div>
-          </div>
-          </div>
-      </div>
-    </div>
-
-    <div id="options" class="col-2 wt serif flex flex-centerize">
-      <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
-          <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register </button></li></div>
-          <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button></li></div>
-          <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li></div>
-          <div> <a href="{{ url_for('out') }}"> <button class="transparent-btn"> <i class="fas fa-sign-out-alt"></i> logout</button></a></li></div>
-      </div>
-      <button id="quit-options" class="wt serif writing-padding no-border">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-
-    <div id="container-post-form" class="col-5">
-      <div id="post-form" class="col-12 flex flex-centerize">
-        <div style="margin: 20px; overflow:hidden;">
-          <form action="" method="POST" class="flex flex-evenly flex-column" >
-            <div class="flex flex-centerize flex-column">
-              <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
-                Simplify the post with a title:
-              </div>
-              <input name="post-title" type="text" class="no-edges no-border text-centerize serif col-10" placeholder="title">
-            </div>
-            <div>
-              <br><br>
-            </div>
-            <div class="flex flex-centerize flex-column">
-              <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
-                Here you can write the post main content:
-              </div>
-              <textarea name="post-body" id="" cols="30" rows="5" placeholder="Post content" class="writing-padding" style="text-align: center;" ></textarea>
-            </div>
-            <button id="post" class="wt serif col-12 writing-padding no-border">post</button>
           </form>
+          <div class="wt col-8 serif flex flex-centerize">
+            do you already have an account? click
+            <button id="" class="transparent-btn to_log">
+              <a href="#" style="padding:0px 4px ;">
+                here
+              </a>
+            </button>
+            to login
+          </div>
         </div>
       </div>
     </div>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+  <div id="options" class="col-2 wt serif flex flex-centerize">
+    <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
+      <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register
+        </button></li>
+      </div>
+      <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
+        </li>
+      </div>
+      <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li>
+      </div>
+      <div> <a href="{{ url_for('out') }}"> <button class="transparent-btn"> <i class="fas fa-sign-out-alt"></i>
+            logout</button></a></li>
+      </div>
+    </div>
+    <button id="quit-options" class="wt serif writing-padding no-border">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div id="container-post-form" class="col-5">
+    <div id="post-form" class="col-12 flex flex-centerize">
+      <div style="margin: 20px; overflow:hidden;">
+        <form action="" method="  " class="flex flex-evenly flex-column">
+          <div class="flex flex-centerize flex-column">
+            <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
+              Simplify the post with a title:
+            </div>
+            <input name="post-title" type="text" class="no-edges no-border text-centerize serif col-10"
+              placeholder="title">
+          </div>
+          <div>
+            <br><br>
+          </div>
+          <div class="flex flex-centerize flex-column">
+            <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
+              Here you can write the post main content:
+            </div>
+            <textarea name="post-body" id="" cols="30" rows="5" placeholder="Post content" class="writing-padding"
+              style="text-align: center;"></textarea>
+          </div>
+          <button id="post" type="submit" class="wt serif col-12 writing-padding no-border">post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      // $('#exit').click(function(){
-      // })
-      $('#show-to-signin').click(function(){
-        if ($('#sign-in-form').css('display')=="none"){
-          $('#sign-in-form').fadeIn(150)
-          $('#container-post-form').animate({width:'0%'}, 200)
-        }
-        else{
-          $('#sign-in-form').fadeOut(150)
-        }
-      })
-      
-      $('#add-post').click(function(){
-        if( $('#container-post-form').css("width")=="0px" ){
-          $('#container-post-form').animate({width:'41%'}, 200)
-          $('#sign-in-form').fadeOut(150)
-        }
-        else{
-          $('#container-post-form').animate({width:'0%'}, 200)
-        }
-      })
-      $('#more-options').click(function(){
-        $('#options').animate({height:'100vh'}, 200)
-      })
-      $('#quit-options').click(function(){
-        $('#container-post-form').animate({width:'0%'}, 200)
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+  $(document).ready(function () {
+    // $('#exit').click(function(){
+    // })
+    $('#show-to-signin').click(function () {
+      if ($('#sign-in-form').css('display') == "none") {
+        $('#sign-in-form').fadeIn(150)
+        $('#container-post-form').animate({ width: '0%' }, 200)
+      }
+      else {
         $('#sign-in-form').fadeOut(150)
+      }
+    })
 
-        $('#options').delay(200).animate({height:'0vh'}, 200)
-      })
+    $('#add-post').click(function () {
+      if ($('#container-post-form').css("width") == "0px") {
+        $('#container-post-form').animate({ width: '41%' }, 200)
+        $('#sign-in-form').fadeOut(150)
+      }
+      else {
+        $('#container-post-form').animate({ width: '0%' }, 200)
+      }
+    })
+    $('#more-options').click(function () {
+      $('#options').animate({ height: '100vh' }, 200)
+    })
+    $('#quit-options').click(function () {
+      $('#container-post-form').animate({ width: '0%' }, 200)
+      $('#sign-in-form').fadeOut(150)
 
-      $('.to_log').click(function(){
-        $('#login_form').fadeToggle(200)
-        $('#register_form').fadeToggle(200)
-      })
+      $('#options').delay(200).animate({ height: '0vh' }, 200)
+    })
 
-
-      $('.to-control').mouseup(function(){
-        var stat=$(this).css('overflow')
-        if($(this).css('overflow')=='hidden'){
-          $(this).css("transition","0.4s")
-          $(this).css("overflow","visible")
-        }
-        else{
-             $(this).css("overflow","hidden")
-          }
-      })
-
-   })
-  </script>
-  </html>
-
-
-
-
+    $('.to_log').click(function () {
+      $('#login_form').fadeToggle(200)
+      $('#register_form').fadeToggle(200)
+    })
 
 
+    $('.to-control').mouseup(function () {
+      var stat = $(this).css('overflow')
+      if ($(this).css('overflow') == 'hidden') {
+        $(this).css("transition", "0.4s")
+        $(this).css("overflow", "visible")
+      }
+      else {
+        $(this).css("overflow", "hidden")
+      }
+    })
+
+    $('#edit').click(function () {
+      $('#container_for_editing').animate({ height: '43vh', width: '37.2vw' })
+    })
+
+  })
 
 
 
-  <!-- i need to make sure how to allow editin posts !? -->
+  function test_f() {
+    alert('test input is working')
+  }
+  function input_to_edit() {
+  }
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+<!-- i need to make sure how to allow editin posts !? -->

@@ -2,6 +2,7 @@ from flask.helpers import url_for
 from flask_login.utils import login_required, logout_user
 from app import app, datab, models
 from flask import render_template, request, redirect, current_app
+import sqlite3
 
 # from app.db import get_db, init_db
 from app.models import users
@@ -104,14 +105,11 @@ def get_home():
 	else:
 		print('method not equal to post '+" ; "+ method)
 	
-
-	if 'edit' in args and args['edit']:
-		print(args['edit'])
-		id= args['edit']
-		p= get_post(id=id)
-
-		print(p)
-
+	if 'edited_post' in form and form['edited_post']:
+		new= form['edited_post']
+		id= form['edited-post-id']
+		edited_post(new, id)
+		return redirect(request.url)
 
 	users=models.users.query.all()
 	posts=models.posts.query.all()
@@ -127,6 +125,33 @@ def out():
 	logout_user()
 	return redirect(url_for('get_home'))
 
+
+""" @app.route('/edit')
+def edit():
+	args=request.args
+	id=args['edit']
+	post=get_post(id)
+	return post
+ """
+
 def get_post(id):
-	db=models.posts.query.filter_by(id=id).first()
-	print (db)
+	# db=models.posts.query.filter_by(id=id).first()
+	db = sqlite3.connect('app/alchemy.db')
+	curs = db.cursor()
+
+	post=curs.execute(
+		'SELECT post_body, post_title FROM posts WHERE id=(?)',(id,) 
+	).fetchone()
+	db.close()
+	return post
+
+def edited_post(new_body, id):
+	db=sqlite3.connect('app/alchemy.db')
+	curs=db.cursor()
+	curs.execute(
+		'UPDATE posts SET post_body=(?) WHERE id=(?)', (new_body, id)
+	)
+
+	db.commit()
+	db.close()
+	print('post should been edited')
