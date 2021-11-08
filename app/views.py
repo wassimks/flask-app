@@ -111,6 +111,11 @@ def get_home():
 		edited_post(new, id)
 		return redirect(request.url)
 
+	if 'delete_post' in args and args['delete_post']:
+		id= args['delete_post']
+		delete_post(id)
+		return redirect(request.url_root)
+
 	users=models.users.query.all()
 	posts=models.posts.query.all()
 
@@ -150,6 +155,17 @@ def edited_post(new_body, id):
 	curs=db.cursor()
 	curs.execute(
 		'UPDATE posts SET post_body=(?) WHERE id=(?)', (new_body, id)
+	)
+
+	db.commit()
+	db.close()
+	print('post should been edited')
+	
+def delete_post(id):
+	db=sqlite3.connect('app/alchemy.db')
+	curs=db.cursor()
+	curs.execute(
+		' DELETE FROM posts WHERE id=(?)', (id,)
 	)
 
 	db.commit()

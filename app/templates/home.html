@@ -296,7 +296,7 @@
       z-index: 10;
     }
 
-    #container_for_editing {
+    .container_for_editing {
       width: 0px;
       height: 0px;
       overflow: hidden;
@@ -383,89 +383,93 @@
               </div>
             </div>
             {% endfor %}
+
+
           </div>
           {% for post in posts %}}
-          <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
-            <div class="col-12 flex flex-between wt writing-padding">
-              {% for user in users %}
-              {% if user.id == post.relative_index %}
-              <div class="col-4 flex flex-centerize">
-                by. {{ user.username }}
-              </div>
-              {% endif %}
-              {% endfor %}
-              <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
-              {% if current_user.id == post.relative_index%}
-              <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;"
-                aria-expanded="true">
-                <!-- <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-align-justify"></i>
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                        <li><a class="dropdown-item active" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                      </ul>
-                    </div>                     -->
-                <button class="transparent-btn" style="color: white;">
-                  <i class="fas fa-align-justify"></i>
-                </button>
-                <div class="reltinize" style="display:none; "> {{ post.id }} </div>
-                <div class="col-12 writing-padding"
-                  style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11;">
-                  <button id="edit" class="transparent-btn">
-                    <!-- <a href="#"> -->
-                    <div style="font-size:14px;">edit post</div>
-                    <!-- </a> -->
-                  </button>
-                  <div style="font-size:14px;">delete post</div>
-                </div>
-
-              </div>
-              {% endif %}
-            </div>
-            <div id="post-description" class="col-12 flex flex-centerize wt">
-              <h4 class="" style="font-family: cursive;">
-                {{post.post_title}}
-              </h4>
-            </div>
-            <div class="col-12 flex flex-centerize wt serif" style="height:43vh;">
-              <div id="post_body" class="hide-scroll"
-                style="height:100%; width:100%; overflow:auto; text-align:justify; position:relative;">
-                {{post.post_body}}
-                <form action="" method="POST" class="hide-scroll">
-                  <div id="container_for_editing"
-                    class="hide-scroll col-12 flex flex-centerize flex-column serif white-bg dark-mode-bg"
-                    style="position:absolute; top:0px;">
-                    <textarea name="edited_post" id="" class="hide-scroll dark-mode-bg wt writing-padding"
-                      style="height:100%; width:100%; overflow:auto; text-align:justify; border-width: 0px; ">
-                        {{post.post_body}}
-                    </textarea>
-                    <button type="submit" class=" transparent-btn col-12 dark-mode-bg no-border" style="background-color:#1f1f1f;">done</button>
-                    <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display"> 
+            <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
+              
+              <!-- top detales and control buttons -->
+              <div class="col-12 flex flex-between wt writing-padding">
+                {% for user in users %}
+                  {% if user.id == post.relative_index %}
+                  <div class="col-4 flex flex-centerize">
+                    by. {{ user.username }}
                   </div>
-                </form>
+                  {% endif %}
+                {% endfor %}
+                <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
+                {% if current_user.id == post.relative_index%}
+                <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;"
+                  aria-expanded="true">
+                  <button class="transparent-btn" style="color: white;">
+                    <i class="fas fa-align-justify"></i>
+                  </button>
+                  <div class="reltinize" style="display:none; "> {{ post.id }} </div>
+                  <div id="edit_delete_container" class="col-12 writing-padding"
+                    style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11;">
+                    <button id="edit-{{post.id}}" class="transparent-btn edit">
+                      <div style="font-size:14px;">  edit post </div>
+                    </button>
+                    <a href="{{url_for('get_home' , delete_post=post.id ) }}">
+                      <div style="font-size:14px;">delete post</div>
+                    </a>
+                  </div>
+                </div>
+                {% endif %}
               </div>
-            </div>
-            <div class="col-12 wt flex">
-              <div class="col-6 text-centerize stander-border no-edges">
-                <button class="transparent-btn">
-                  <i class="far fa-heart"></i>
-                </button>
-              </div>
-              <div class="col-6 text-centerize stander-border no-edges">
-                <button class="transparent-btn">
-                  <i class="far fa-comment-alt"></i>
-                </button>
-              </div>
-            </div>
-            <div class="col-12">
 
+              <!-- post title -->
+              <div id="post-description" class="col-12 flex flex-centerize wt">
+                <h4 class="" style="font-family: cursive;">
+                  {{post.post_title}}
+                </h4>
+              </div>
+
+              <!-- post_body and post editing space -->
+              <div id="edit-{{post.id}}-shine" class="col-12 hide-scroll flex-centerize wt serif no-overflow" style="height:43vh; margin-bottom: 10px;">
+                <div class="col-12" style="position:relative;">
+                  <div id="post_body" class="hide-scroll no-overflow"
+                    style="height:42vh; width:100%; overflow:auto; text-align:justify; position:relative;">
+                    {{post.post_body}}
+                  </div>
+                  <div id="">
+                    <form action="" method="POST" class="hide-scroll">
+                      <div
+                        id="to-edit-{{post.id}}"
+                        class="container_for_editing full-height hide-scroll col-12 flex flex-centerize flex-column serif white-bg dark-mode-bg"
+                        style="position:absolute; top:0px;">
+                        <textarea name="edited_post" id="" class="hide-scroll dark-mode-bg wt writing-padding"
+                          style="height:100%; width:100%; overflow:auto; text-align:justify; border-width: 0px; ">
+                            {{post.post_body}}
+                        </textarea>
+                        <button type="submit" class=" transparent-btn col-12 dark-mode-bg no-border" style="background-color:#1f1f1f; z-index: 12;">done</button>
+                        <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display"> 
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- comment && like buttons -->
+              <div class="col-12 wt flex">
+                <div class="col-6 text-centerize stander-border no-edges">
+                  <button class="transparent-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="col-6 text-centerize stander-border no-edges">
+                  <button class="transparent-btn">
+                    <i class="far fa-comment-alt"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- place to display comments  -->
+              <div class="col-12">
+
+              </div>
             </div>
-          </div>
           {% endfor %}
         </div>
       </div>
@@ -559,7 +563,7 @@
   <div id="container-post-form" class="col-5">
     <div id="post-form" class="col-12 flex flex-centerize">
       <div style="margin: 20px; overflow:hidden;">
-        <form action="" method="  " class="flex flex-evenly flex-column">
+        <form action="" method="POST" class="flex flex-evenly flex-column">
           <div class="flex flex-centerize flex-column">
             <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
               Simplify the post with a title:
@@ -645,11 +649,15 @@
       }
     })
 
-    $('#edit').click(function () {
-      $('#container_for_editing').animate({ height: '43vh', width: '37.2vw' })
-    })
+    $('.edit').click(function () {
+      var x = 'to-'+ $(this).attr('id')
+      var y = $(this).attr('id') + '-shine'
 
-  })
+      $('#'+x).animate({height:'42vh', width:'100%'}, 500, function(){
+      $('#'+y).css('box-shadow','0px 0px 10px aliceblue')
+      })
+      })
+    })
 
 
 
