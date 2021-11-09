@@ -17,3 +17,10 @@ class posts (datab.Model):
     post_title= datab.Column(datab.String(length=50) )
     post_body= datab.Column(datab.String(length=255))
     relative_index= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
+
+class comments(datab.Model):
+    id= datab.Column(datab.Integer(), primary_key=True)
+    date= datab.Column(datab.String(255), default=datetime.utcnow())
+    commenter= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
+    original_post= datab.Column(datab.Integer(), datab.ForeignKey(posts.id))
+    c_content= datab.Column(datab.String(255))

@@ -218,6 +218,7 @@
 
     #navbar {
       padding: 10px;
+      box-shadow: 0px 0px 4px #222;
     }
 
     #posts-scam {
@@ -259,7 +260,7 @@
 
     #post-container {
       width: 100%;
-      height: 66vh;
+      /* height: 66vh; */
       padding: 0vw 6vw;
     }
 
@@ -387,8 +388,8 @@
 
           </div>
           {% for post in posts %}}
-            <div id="post-container" class="" style="box-shadow: 0px 2px 4px grey;">
-              
+            <div id="post-container" class="no-overflow hide-scroll" style="box-shadow: 0px 2px 4px grey;">
+
               <!-- top detales and control buttons -->
               <div class="col-12 flex flex-between wt writing-padding">
                 {% for user in users %}
@@ -444,7 +445,7 @@
                             {{post.post_body}}
                         </textarea>
                         <button type="submit" class=" transparent-btn col-12 dark-mode-bg no-border" style="background-color:#1f1f1f; z-index: 12;">done</button>
-                        <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display"> 
+                        <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display">
                       </div>
                     </form>
                   </div>
@@ -452,23 +453,67 @@
               </div>
 
               <!-- comment && like buttons -->
-              <div class="col-12 wt flex">
-                <div class="col-6 text-centerize stander-border no-edges">
-                  <button class="transparent-btn">
-                    <i class="far fa-heart"></i>
+              <div class="col-12 wt flex " style="border-top:1px solid grey; padding: 8px;">
+                <div class="col-6 text-centerize no-edges">
+                  <button class="transparent-btn col-12">
+                    <i class="far fa-heart" style="padding-right: 6px;"></i> Like
                   </button>
                 </div>
-                <div class="col-6 text-centerize stander-border no-edges">
-                  <button class="transparent-btn">
-                    <i class="far fa-comment-alt"></i>
+                <div class="col-6 text-centerize no-edges">
+                  <button class="transparent-btn col-12">
+                    <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
                   </button>
                 </div>
               </div>
 
-              <!-- place to display comments  -->
-              <div class="col-12">
+              <!-- container for all comments  -->
+              <div class="col-12 wt " style="width:100%; padding: 1vh 4vw;">
 
+                <!-- container for each comment -->
+                {% for comment in comments %}
+                  {% if comment.original_post==post.id %}
+                    <div class="flex flex-column writing-padding col-12" style="padding-bottom: 1.5vh; background-color: #222222; margin-top: 2vh;border-top-right-radius: 20px; border-bottom-right-radius: 20px;" >
+
+                      <!-- comment header -->
+                      <div class="flex" style="border-bottom: 1px solid rgb(100, 100, 100);">
+                        <div class="col-4" >
+                          {% for user in users %}
+                            {% if comment.commenter==user.id %}
+                              <span style="font-style: oblique; color:#393c3e; font-size: x-small;">
+                                <i class="fas fa-user"></i>
+                              </span>
+                              <span
+                              style="font-style: oblique; font-family:cursive; font-size:24px;">
+                                {{ user.username }}
+                              </span>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                        <div class="col-7 flex flex-centerize">
+                          <span style="font-size: xx-small; color:#393c3e;" >{{comment.date}}</span>
+                        </div>
+                      </div>
+
+                      <!-- comment content -->
+                      <div class="text-centerize" style="padding:0.5vh 0.5vw; text-align: justify;">
+                        {{comment.c_content}}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
               </div>
+
+              <!-- adding comment part -->
+              {% if current_user.id %}
+                <div class="col-12" style="margin:0.5vh 0.5vw;">
+                  <form action="" method="POST" class="col-12 flex">
+                    <input type="text" name="add-comment" id="" class="col-10 writing-padding" placeholder="leave a comment" style="outline-style: none;">
+                    <textarea name="commenter" id="" cols="30" rows="1" class="no-display">{{current_user.id}}</textarea>
+                    <textarea name="original_post" id="" cols="30" rows="1" class="no-display">{{post.id}}</textarea>
+                    <button type="submit" class="col-2 transparent-btn" style="background-color: #1b1b1b;">send</button>
+                  </form>
+                </div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -485,7 +530,7 @@
         <form action="" method="POST" class="flex flex-column flex-evenly col-8" style="height:60vh;">
           <span class="wt flex flex-centerize serif"> Your username:</span>
           <input name="username_to_login" type="text" class="no-edges text-centerize writing-padding blue-box-shadow"
-            placeholder="username"><br><br>
+            placeholder="username" autofocus><br><br>
           <span class="wt flex flex-centerize serif"> Your password: </span>
           <input name="password_to_login" type="password"
             class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>

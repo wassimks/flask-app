@@ -116,13 +116,33 @@ def get_home():
 		delete_post(id)
 		return redirect(request.url_root)
 
+	if 'add-comment' in form and form['add-comment']:
+		comment= form['add-comment']
+		commenter= form['commenter']
+		time_of_comment= datetime.datetime.now().strftime('%B %d %Y - %H:%M')
+		origin= form['original_post']
+
+		new_comment= models.comments(
+			date= time_of_comment,
+			commenter= commenter,
+			original_post=origin,
+			c_content=comment			
+		)
+
+		datab.session.add(new_comment)
+		datab.session.commit()
+		print('comment added')
+		return redirect(request.url)
+
 	users=models.users.query.all()
 	posts=models.posts.query.all()
+	comments= models.comments.query.all()
 
 	return render_template("home.html"
 	,users=users
 	,posts=posts
 	,admin=admin
+	,comments=comments
 	)
 
 @app.route('/logout')
