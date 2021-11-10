@@ -145,19 +145,48 @@ def get_home():
 	,comments=comments
 	)
 
+
+@app.route('/register')
+def get_register():
+	return render_template('ph_register.html')
+
+@app.route('/login', methods=['GET','POST'])
+def get_login():
+	form=request.form
+	if request.method=='POST':
+		try:
+			datab.create_all()
+		except:
+			pass
+		# print('1st step')
+		if "username_to_login" in form and form['username_to_login']:
+			# print('2nd step')
+			if "password_to_login" in form and form['password_to_login']:
+				username_to_check=form['username_to_login']
+				password_to_check=form['password_to_login']
+
+				user_found=models.users.query.filter_by(username=username_to_check).first()
+				if user_found and user_found.username :
+					if user_found.password==password_to_check:
+						login_user(user_found)
+						return redirect(request.url_root)
+					else:
+						print('wrong password were given')
+				else:
+					print('no user with the specified username were found')
+			else:
+				print('no password to login or wrong password')
+		else :
+			print('no username sent to login or wrong username')
+		return redirect(request.url_root)
+	return render_template('ph_login.html')
+
 @app.route('/logout')
 def out():
 	logout_user()
 	return redirect(url_for('get_home'))
 
 
-""" @app.route('/edit')
-def edit():
-	args=request.args
-	id=args['edit']
-	post=get_post(id)
-	return post
- """
 
 def get_post(id):
 	# db=models.posts.query.filter_by(id=id).first()

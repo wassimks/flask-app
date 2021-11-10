@@ -11,314 +11,23 @@
     <link rel="stylesheet" href="/templates/statics/CSS/StanderCss.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/CSS/dark_mode.css">
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
   <title>Home</title>
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
   <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      box-sizing: border-box;
-    }
 
-    *::-webkit-scrollbar {
-      display: none;
-    }
-
-    html {
-      overflow-x: hidden;
-    }
-
-    body,
-    html {
-      min-height: 100vh;
-    }
-
-    .dark-mode-bg {
-      background-color: #1f1f1f;
-    }
-
-    .dark-mode-item-bg {
-      background-color: #292929
-    }
-
-    .col-1 {
-      width: 8.33%;
-    }
-
-    .col-2 {
-      width: 16.66%;
-    }
-
-    .col-3 {
-      width: 25%;
-    }
-
-    .col-4 {
-      width: 33.33%;
-    }
-
-    .col-5 {
-      width: 41.66%;
-    }
-
-    .col-6 {
-      width: 50%;
-    }
-
-    .col-7 {
-      width: 58.33%;
-    }
-
-    .col-8 {
-      width: 66.66%;
-    }
-
-    .col-9 {
-      width: 75%;
-    }
-
-    .col-10 {
-      width: 83.33%;
-    }
-
-    .col-11 {
-      width: 91.66;
-    }
-
-    .col-12 {
-      width: 100%;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .flex-centerize {
-      justify-content: center;
-      align-items: center;
-    }
-
-    .flex-column {
-      flex-flow: column;
-    }
-
-    .flex-evenly {
-      justify-content: space-evenly;
-    }
-
-    .flex-between {
-      justify-content: space-between;
-    }
-
-    .flex-around {
-      justify-content: space-around;
-    }
-
-    .wt {
-      color: white;
-    }
-
-    .writing-padding {
-      padding: 2px 4px;
-    }
-
-    .no-overflow {
-      overflow: auto;
-    }
-
-    .no-edges {
-      border-radius: 5px;
-    }
-
-    .no-border {
-      border-width: 0px;
-      outline-width: 0px;
-    }
-
-    .no-display {
-      display: none;
-    }
-
-    .full-page-height {
-      min-height: 100vh;
-    }
-
-    .full-height {
-      height: 100%;
-    }
-
-    .text-centerize {
-      text-align: center;
-    }
-
-    .xl-font {
-      font-size: x-large;
-    }
-
-    .serif {
-      font-family: 'aldus', serif;
-    }
-
-    .stander-border {
-      border: 1px solid white;
-    }
-
-    .white-bg {
-      background-color: white;
-    }
-
-    .profile-image {
-      height: 30px;
-      width: 30px;
-      border-radius: 90px;
-    }
-
-    .pubcart {
-      height: 90vh;
-      margin: 1vh 5vw;
-    }
-
-    .transparent-btn {
-      border-width: 0px;
-      background-color: transparent;
-      color: #03dac5;
-    }
-
-    .alert-full {
-      position: fixed;
-      top: 0px;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-    }
-
-    .blue-box-shadow {
-      outline-width: 0px;
-      border-width: 0px;
-    }
-
-    .blue-box-shadow:focus {
-      box-shadow: 1px 2px 2px #018786;
-      outline-width: 0px;
-      border-width: 0px;
-      border-color: blue;
-    }
-
-    .to-control {
-      overflow: hidden;
-      transition: 0.4s;
-    }
-
-
-    #sign-in-form {
-      display: none;
-    }
-
-    #navbar {
-      padding: 10px;
-      box-shadow: 0px 0px 4px #222;
-    }
-
-    #posts-scam {
-      height: 22vh;
-      margin: 1vh 0vw;
-    }
-
-    #validate {
-      background-color: #005457;
-    }
-
-    #post {
-      background-color: #005457;
-    }
-
-    #skip {
-      background-color: #b00a4c;
-      position: absolute;
-      top: 0vh;
-      right: 0px;
-      padding: 10px;
-    }
-
-    #quit-options {
-      background-color: #b00a4c;
-      position: absolute;
-      top: 0vh;
-      right: 0px;
-      padding: 5px;
-    }
-
-    #exit {
-      background-color: #b00a4c;
-      position: fixed;
-      top: 0px;
-      right: 0px;
-      padding: 10px;
-    }
-
-    #post-container {
-      width: 100%;
-      /* height: 66vh; */
-      padding: 0vw 6vw;
-    }
-
-    #post-description {
-      height: 7vh;
-    }
-
-    #container-post-form {
-      position: fixed;
-      top: 8vh;
-      right: 16.66%;
-      height: 100vh;
-      width: 0%;
-      overflow: hidden;
-    }
-
-    #post-form {
-      background-color: rgba(0, 0, 0, 0.8);
-      height: 75%;
-      border-left: 2px solid dotted;
-      border-bottom: 2px solid dotted;
-      border-bottom-left-radius: 55px;
-    }
-
-    #options {
-      position: fixed;
-      top: 8vh;
-      right: 0px;
-      height: 0vh;
-      /* width: 0%; */
-      overflow: hidden;
-      background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: -2px 0px 4px #2f2f2f;
-      z-index: 10;
-    }
-
-    .container_for_editing {
-      width: 0px;
-      height: 0px;
-      overflow: hidden;
-    }
-
-    .hide-scroll {
-      -ms-overflow-style: none;
-      /* IE and Edge */
-      scrollbar-width: none;
-      /* Firefox */
-    }
   </style>
 </head>
 
 <body>
 
-  <div class="dark-mode-bg no-overflow" style="height: 100vh;">
-
-    <div id="navbar" style="position:fixed; top:0px; width: 100%; height:8vh;"
-      class=" flex dark-mode-item-bg writing-padding">
-      <div class="col-4 wt flex">
+  <div class="dark-mode-bg no-overflow " style="height: 100vh;">
+  
+  <!-- navbar on pc -->
+    <div  id="navbar" style=" position:fixed; top:0px; width: 100%; height:8vh;"
+          class="on-pc flex dark-mode-item-bg writing-padding">
+      <div class="col-4 wt flex on-pc">
         <div class="profile-image">
           <img style="width:100%; height:100%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
             alt="">
@@ -339,7 +48,7 @@
           <button id="" class="transparent-btn"> <i class="fas fa-ellipsis-h"></i> </button>
         </div>
       </div>
-      <div class="col-4 flex flex-evenly">
+      <div id="hide-later" class="col-4 flex flex-evenly" >
         <div class="flex wt ">
           {% if current_user.username %}
           <!--               {% if current_user.photo %}
@@ -357,34 +66,63 @@
           <div>points.ph</div>
         </div>
         <div class="flex wt">
-          <button id="more-options" class="transparent-btn" style="color: white;">
+          <button id="" class="more-options transparent-btn" style="color: white;">
             more
           </button>
         </div>
       </div>
     </div>
 
+    <!-- navbar on phone -->
+    <div class="col-12 on-phone">
+      <div  id="navbar" style="position:fixed; top:0px; width: 100%; height:8vh;"
+            class="no-overflow flex flex-between dark-mode-item-bg writing-padding">
+        <div class="col-7 wt flex">
+          <div class="profile-image">
+            <img style="width:70%; height:70%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
+              alt="">
+          </div>
+          <span style="font-family:'hand writing',cursive; font-size:large; padding-left: 4px;">mede-univ</span>
+        </div>
+        <div class="col-4 flex flex-evenly wt">
+          <div class="flex wt col-12">
+            <button id="" class=" more-options transparent-btn col-12" style="color: white;">
+              more
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-12 flex no-overflow" style="margin-top:8vh; height:92vh;">
-      <div class="col-3"></div>
-      <div class="col-6 flex flex-column flex-evenly">
+      <div class="col-3 on-pc"></div>
+      <div class="col-6 flex flex-column flex-evenly full-on-phone">
         <div style="max-height: 92vh; overflow: auto;">
           <div id="posts-scam"
             class="flex flex-evenly flex-column wt no-overflow no-edges dark-mode-item-bg writing-padding">
             {% for post in posts%}
             <div class="col-12 flex flex-around" style="height:20%;">
               <div class="col-10 flex flex-evenly">
-                <table class="col-12">
+
+                <!-- table on-pc -->
+                <table class="col-12 on-pc">
                   <tr>
                     <td style="width:40%;" class="no-overflow">title: {{ post.post_title }} </td>
                     <td>created: {{ post.date }}</td>
                   </tr>
                 </table>
-                <!-- <span> title: {{ post.post_title }} </span>
-                  <span> created: {{ post.date }}</span> -->
+
+                <!-- table on phone -->
+                <table class="col-12 on-phone">
+                  <tr>
+                    <td style="" class="col-12 no-overflow text-centerize" colspan="2">title: {{ post.post_title }} </td>
+                  </tr>
+                </table>
+
+                <!-- carousel to display titles -->
               </div>
             </div>
             {% endfor %}
-
 
           </div>
           {% for post in posts %}}
@@ -518,7 +256,7 @@
           {% endfor %}
         </div>
       </div>
-      <div class="col-3"></div>
+      <div class="col-3 on-pc"></div>
     </div>
 
   </div>
@@ -534,8 +272,6 @@
           <span class="wt flex flex-centerize serif"> Your password: </span>
           <input name="password_to_login" type="password"
             class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
-          <!-- <span class="wt flex flex-centerize serif">Confirm password: </span>
-              <input name="c_password" type="password" class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="confirm password"><br><br><br><br> -->
           <span class="wt flex flex-centerize serif"></span>
           <div class="flex flex-evenly">
             <button id="validate_to_login" class="wt serif col-2 no-edges writing-padding no-border" type="submit"
@@ -586,7 +322,31 @@
     </div>
   </div>
 
-  <div id="options" class="col-2 wt serif flex flex-centerize">
+  <!-- options on pc  -->
+  <div id="options" class=" options-device-adjust wt serif flex flex-centerize">
+    <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
+      <div>
+        <button id="show-to-signin" class="transparent-btn on-pc"> <i class="fas fa-sign-in-alt"></i> login/register</button>
+        <a href="{{ url_for('get_register') }}" class="on-phone wt">
+          <button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register</button>
+        </a>
+      </div>
+      <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
+        </li>
+      </div>
+      <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li>
+      </div>
+      <div> <a href="{{ url_for('out') }}"> <button class="transparent-btn"> <i class="fas fa-sign-out-alt"></i>
+            logout</button></a></li>
+      </div>
+    </div>
+    <button id="quit-options" class="wt serif writing-padding no-border">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- options on phone -->
+<!--   <div id="options" class=" options-device-adjust wt serif flex flex-centerize">
     <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
       <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register
         </button></li>
@@ -604,7 +364,7 @@
       <i class="fas fa-times"></i>
     </button>
   </div>
-
+ -->
   <div id="container-post-form" class="col-5">
     <div id="post-form" class="col-12 flex flex-centerize">
       <div style="margin: 20px; overflow:hidden;">
@@ -667,7 +427,7 @@
         $('#container-post-form').animate({ width: '0%' }, 200)
       }
     })
-    $('#more-options').click(function () {
+    $('.more-options').click(function () {
       $('#options').animate({ height: '100vh' }, 200)
     })
     $('#quit-options').click(function () {
