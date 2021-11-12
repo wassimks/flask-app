@@ -24,3 +24,7 @@ class comments(datab.Model):
     commenter= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
     original_post= datab.Column(datab.Integer(), datab.ForeignKey(posts.id))
     c_content= datab.Column(datab.String(255))
+
+class likes(datab.Model):
+    id= datab.Column(datab.Integer(), primary_key=True)
+    

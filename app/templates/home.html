@@ -107,15 +107,15 @@
                 <!-- table on-pc -->
                 <table class="col-12 on-pc">
                   <tr>
-                    <td style="width:40%;" class="no-overflow">title: {{ post.post_title }} </td>
-                    <td>created: {{ post.date }}</td>
+                    <td style="width:40%;" class="no-overflow">title: {{ post[2] }} </td>
+                    <td>created: {{ post[1] }}</td>
                   </tr>
                 </table>
 
                 <!-- table on phone -->
                 <table class="col-12 on-phone">
                   <tr>
-                    <td style="" class="col-12 no-overflow text-centerize" colspan="2">title: {{ post.post_title }} </td>
+                    <td style="" class="col-12 no-overflow text-centerize" colspan="2">title: {{ post[2] }} </td>
                   </tr>
                 </table>
 
@@ -131,26 +131,31 @@
               <!-- top detales and control buttons -->
               <div class="col-12 flex flex-between wt writing-padding">
                 {% for user in users %}
-                  {% if user.id == post.relative_index %}
+                  {% if user.id == post[4] %}
                   <div class="col-4 flex flex-centerize">
-                    by. {{ user.username }}
+                    <div class="" style="padding-right:10px;">
+                      <img style="height:30px; width:30px; border-radius:90px;" src="/static/profile-photos/Initial Letter Logo Ks Company Name Stock Vector (Royalty Free) 1019189167.jpeg" alt="">
+                    </div>
+                    <div>
+                      by. {{ user.username }}
+                    </div>
                   </div>
                   {% endif %}
                 {% endfor %}
-                <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post.date}}</div>
-                {% if current_user.id == post.relative_index%}
-                <div id="test" class="col-4 xl-font flex flex-centerize to-control" style=" position:relative;"
+                <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post[1]}}</div>
+                {% if current_user.id == post[4]%}
+                <div id="test" class="col-2 xl-font flex flex-centerize to-control" style=" position:relative;"
                   aria-expanded="true">
                   <button class="transparent-btn" style="color: white;">
                     <i class="fas fa-align-justify"></i>
                   </button>
-                  <div class="reltinize" style="display:none; "> {{ post.id }} </div>
+                  <div class="reltinize" style="display:none; "> {{ post[0] }} </div>
                   <div id="edit_delete_container" class="col-12 writing-padding"
                     style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11;">
-                    <button id="edit-{{post.id}}" class="transparent-btn edit">
+                    <button id="edit-{{post[0]}}" class="transparent-btn edit">
                       <div style="font-size:14px;">  edit post </div>
                     </button>
-                    <a href="{{url_for('get_home' , delete_post=post.id ) }}">
+                    <a href="{{url_for('get_home' , delete_post=post[0] ) }}">
                       <div style="font-size:14px;">delete post</div>
                     </a>
                   </div>
@@ -161,29 +166,29 @@
               <!-- post title -->
               <div id="post-description" class="col-12 flex flex-centerize wt">
                 <h4 class="" style="font-family: cursive;">
-                  {{post.post_title}}
+                  {{post[2]}}
                 </h4>
               </div>
 
               <!-- post_body and post editing space -->
-              <div id="edit-{{post.id}}-shine" class="col-12 hide-scroll flex-centerize wt serif no-overflow" style="height:43vh; margin-bottom: 10px;">
+              <div id="edit-{{post[0]}}-shine" class="col-12 hide-scroll flex-centerize wt serif no-overflow" style="height:43vh; margin-bottom: 10px;">
                 <div class="col-12" style="position:relative;">
                   <div id="post_body" class="hide-scroll no-overflow"
                     style="height:42vh; width:100%; overflow:auto; text-align:justify; position:relative;">
-                    {{post.post_body}}
+                    {{post[3]}}
                   </div>
                   <div id="">
                     <form action="" method="POST" class="hide-scroll">
                       <div
-                        id="to-edit-{{post.id}}"
+                        id="to-edit-{{post[0]}}"
                         class="container_for_editing full-height hide-scroll col-12 flex flex-centerize flex-column serif white-bg dark-mode-bg"
                         style="position:absolute; top:0px;">
                         <textarea name="edited_post" id="" class="hide-scroll dark-mode-bg wt writing-padding"
                           style="height:100%; width:100%; overflow:auto; text-align:justify; border-width: 0px; ">
-                            {{post.post_body}}
+                            {{post[3]}}
                         </textarea>
                         <button type="submit" class=" transparent-btn col-12 dark-mode-bg no-border" style="background-color:#1f1f1f; z-index: 12;">done</button>
-                        <input type="text" name="edited-post-id" value="{{post.id}}" class="no-display">
+                        <input type="text" name="edited-post-id" value="{{post[0]}}" class="no-display">
                       </div>
                     </form>
                   </div>
@@ -198,9 +203,9 @@
                   </button>
                 </div>
                 {% if current_user.username %}
-                <div id="c-{{post.id}}" class="comment col-6 text-centerize no-edges">
+                <div id="c-{{post[0]}}" class="comment col-6 text-centerize no-edges">
                   <button class="transparent-btn col-12">
-                      <label for="aria-to-c-{{post.id}}" class="col-12">
+                      <label for="aria-to-c-{{post[0]}}" class="col-12">
                       <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
                     </label>
                     </button>
@@ -220,7 +225,7 @@
 
                 <!-- container for each comment -->
                 {% for comment in comments %}
-                  {% if comment.original_post==post.id %}
+                  {% if comment.original_post==post[0] %}
                     <div class="flex flex-column writing-padding col-12" style="padding-bottom: 1.5vh; background-color: #222222; margin-top: 2vh;border-top-right-radius: 20px; border-bottom-right-radius: 20px;" >
 
                       <!-- comment header -->
@@ -256,10 +261,10 @@
               {% if current_user.id %}
                 <div class="col-12" style="margin:0.5vh 0.5vw;">
                   <form action="" method="POST" class="col-12 flex">
-                    <input type="text" name="add-comment" id="aria-to-c-{{post.id}}" class="col-10 shine-on-f writing-padding"
+                    <input type="text" name="add-comment" id="aria-to-c-{{post[0]}}" class="col-10 shine-on-f writing-padding"
                             placeholder="leave a comment" style="outline-style: none;" >
                     <textarea name="commenter" id="" cols="30" rows="1" class="no-display">{{current_user.id}}</textarea>
-                    <textarea name="original_post" id="" cols="30" rows="1" class="no-display">{{post.id}}</textarea>
+                    <textarea name="original_post" id="" cols="30" rows="1" class="no-display">{{post[0]}}</textarea>
                     <button type="submit" class="col-2 transparent-btn" style="background-color: #1b1b1b;">send</button>
                   </form>
                 </div>
@@ -355,8 +360,14 @@
           </button>
         </a>
       </div>
-      <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
-        </li>
+      <div class="on-pc">
+        <button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
+      </div>
+      <div class="on-phone">
+        <a href="{{ url_for('get_posting') }}" class="col-12">
+          <button class="transparent-btn">
+            <i class="fas fa-user-edit"></i> create new post </button>
+        </a>
       </div>
       <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li>
       </div>
@@ -389,7 +400,7 @@
     </button>
   </div>
  -->
-  <div id="container-post-form" class="col-5">
+  <div id="container-post-form" class="col-5" style="right: 25%;">
     <div id="post-form" class="col-12 flex flex-centerize">
       <div style="margin: 20px; overflow:hidden;">
         <form action="" method="POST" class="flex flex-evenly flex-column">
@@ -495,10 +506,6 @@
       $('#')
     })
 
-/*        $('.comment').click(function(){
-        var post= '#aria-to-'+$(this).attr('id')
-       })
- */  
   })
 
 

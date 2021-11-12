@@ -133,11 +133,19 @@ def get_home():
 		datab.session.commit()
 		print('comment added')
 		return redirect(request.url)
+	base=sqlite3.connect('app/alchemy.db')
+	curs=base.cursor()
+
 
 	users=models.users.query.all()
-	posts=models.posts.query.all()
+	posts=curs.execute(
+		'SELECT * FROM posts ORDER BY id DESC'
+	).fetchall()
+	base.commit()
+	base.close()
 	comments= models.comments.query.all()
 
+	print(posts[1][0])
 	return render_template("home.html"
 	,users=users
 	,posts=posts
@@ -186,6 +194,40 @@ def out():
 	logout_user()
 	return redirect(url_for('get_home'))
 
+@app.route('/posting', methods=['GET','POST'])
+def get_posting():
+	method=request.method
+	form=request.form
+	if method == "POST":
+		# print('first step to post validated ')
+		if "post-title" in form and form["post-title"]:
+			# print('second step to post validated ')
+			if "post-body" in form and form['post-body']:
+				# print('third step to post validated ')
+				post_title = form["post-title"]
+				post_body=form["post-body"]
+				created=datetime.datetime.now().strftime('%B %d %Y - %H:%M')
+				# db=get_db()
+				# time=
+
+				n_post=models.posts(
+					date=created,
+					post_title=post_title,
+					post_body=post_body,
+					relative_index=current_user.id
+				)
+				datab.session.add(n_post)
+				datab.session.commit()
+				print('post added to posts class from models file, and post had should be posted')
+				return redirect(request.url_root)
+			else:
+				print("no body were found for thr post")
+		else:
+			print('no title were found for this post')
+	else:
+		print('method not equal to post '+" ; "+ method)
+
+	return render_template('ph_posting.html')
 
 
 def get_post(id):
