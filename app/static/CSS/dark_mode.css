@@ -73,6 +73,10 @@
     width: 100%;
   }
 
+  .shine-on-f:focus{
+    box-shadow: 0px 0px 8px aliceblue;
+  }
+
   .flex {
     display: flex;
   }

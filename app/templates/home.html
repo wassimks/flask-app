@@ -197,11 +197,22 @@
                     <i class="far fa-heart" style="padding-right: 6px;"></i> Like
                   </button>
                 </div>
-                <div class="col-6 text-centerize no-edges">
+                {% if current_user.username %}
+                <div id="c-{{post.id}}" class="comment col-6 text-centerize no-edges">
                   <button class="transparent-btn col-12">
-                    <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
+                      <label for="aria-to-c-{{post.id}}" class="col-12">
+                      <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
+                    </label>
+                    </button>
+                </div>
+                {% else %}
+                <div id="" class="comment col-6 text-centerize no-edges">
+                  <button class="transparent-btn col-12" onclick="need_login()">
+                      <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
                   </button>
                 </div>
+
+                {%endif%}
               </div>
 
               <!-- container for all comments  -->
@@ -245,7 +256,8 @@
               {% if current_user.id %}
                 <div class="col-12" style="margin:0.5vh 0.5vw;">
                   <form action="" method="POST" class="col-12 flex">
-                    <input type="text" name="add-comment" id="" class="col-10 writing-padding" placeholder="leave a comment" style="outline-style: none;">
+                    <input type="text" name="add-comment" id="aria-to-c-{{post.id}}" class="col-10 shine-on-f writing-padding"
+                            placeholder="leave a comment" style="outline-style: none;" >
                     <textarea name="commenter" id="" cols="30" rows="1" class="no-display">{{current_user.id}}</textarea>
                     <textarea name="original_post" id="" cols="30" rows="1" class="no-display">{{post.id}}</textarea>
                     <button type="submit" class="col-2 transparent-btn" style="background-color: #1b1b1b;">send</button>
@@ -326,9 +338,21 @@
   <div id="options" class=" options-device-adjust wt serif flex flex-centerize">
     <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
       <div>
-        <button id="show-to-signin" class="transparent-btn on-pc"> <i class="fas fa-sign-in-alt"></i> login/register</button>
+        <button id="show-to-signin" class="transparent-btn on-pc"> <i class="fas fa-sign-in-alt"></i>
+          {% if current_user.username %}
+            change account
+            {% else %}
+              login/register
+          {% endif %}
+        </button>
         <a href="{{ url_for('get_register') }}" class="on-phone wt">
-          <button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register</button>
+          <button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i>
+            {% if current_user.username %}
+              change account
+              {% else %}
+                login/register
+            {% endif %}
+          </button>
         </a>
       </div>
       <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
@@ -404,10 +428,16 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+  
+  function need_login(){
+    alert('please try to login first so you can benifit from this option')
+  }
 
   $(document).ready(function () {
     // $('#exit').click(function(){
     // })
+
+
     $('#show-to-signin').click(function () {
       if ($('#sign-in-form').css('display') == "none") {
         $('#sign-in-form').fadeIn(150)
@@ -457,12 +487,19 @@
     $('.edit').click(function () {
       var x = 'to-'+ $(this).attr('id')
       var y = $(this).attr('id') + '-shine'
+      var z = 'comment-to-'+$(this).attr('id')
 
       $('#'+x).animate({height:'42vh', width:'100%'}, 500, function(){
-      $('#'+y).css('box-shadow','0px 0px 10px aliceblue')
+        $('#'+y).css('box-shadow','0px 0px 10px aliceblue')
       })
-      })
+      $('#')
     })
+
+/*        $('.comment').click(function(){
+        var post= '#aria-to-'+$(this).attr('id')
+       })
+ */  
+  })
 
 
 
