@@ -26,10 +26,10 @@
                             <form action="" method="POST" class="flex flex-column flex-evenly col-11" style="height:80%;">
                                 <span class="wt flex flex-centerize serif" style="font-size: small;"> Your username:</span>
                                 <input name="username_to_login" type="text" class="no-edges text-centerize writing-padding blue-box-shadow"
-                                  placeholder="username" autofocus><br><br>
+                                  placeholder="username" autofocus required><br><br>
                                 <span class="wt flex flex-centerize serif" style="font-size: small;"> Your password: </span>
-                                <input name="password_to_login" type="password"
-                                  class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password">
+                                <input name="password_to_login" type="password" required
+                                  class="no-edges text-centerize writing-padding blue-box-shadow" placeholder="password"><br><br>
                                 <span class="wt flex flex-centerize serif"></span>
                                 <div class="flex flex-evenly">
                                   <button id="validate_to_login" class="wt serif col-6 no-edges writing-padding no-border" type="submit"
