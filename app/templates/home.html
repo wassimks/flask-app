@@ -12,6 +12,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/CSS/dark_mode.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
   <title>Home</title>
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
@@ -195,29 +196,107 @@
                 </div>
               </div>
 
+              
               <!-- comment && like buttons -->
               <div class="col-12 wt flex " style="border-top:1px solid grey; padding: 8px;">
-                <div class="col-6 text-centerize no-edges">
-                  <button class="transparent-btn col-12">
-                    <i class="far fa-heart" style="padding-right: 6px;"></i> Like
+                <div class="col-4 text-centerize no-edges">
+                  <button class="replace-extra transparent-btn col-12">
+                    <i class="fas fa-paperclip"></i> <span class="extra-I">Attachement</span>
                   </button>
                 </div>
                 {% if current_user.username %}
-                <div id="c-{{post[0]}}" class="comment col-6 text-centerize no-edges">
-                  <button class="transparent-btn col-12">
-                      <label for="aria-to-c-{{post[0]}}" class="col-12">
-                      <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
+                <div id="c-{{post[0]}}" class="comment col-4 text-centerize no-edges flex flex-centerize">
+                  <button class="replace-extra transparent-btn col-12">
+                    <label for="aria-to-c-{{post[0]}}" class="col-12">
+                      <i class="far fa-comment-alt" style="padding-right: 6px;"></i> <span class="extra-I">Comment</span>
                     </label>
-                    </button>
-                </div>
-                {% else %}
-                <div id="" class="comment col-6 text-centerize no-edges">
-                  <button class="transparent-btn col-12" onclick="need_login()">
-                      <i class="far fa-comment-alt" style="padding-right: 6px;"></i> Comment
                   </button>
                 </div>
-
+                {% else %}
+                <div id="" class="comment col-4 text-centerize no-edges">
+                  <button class="replace-extra transparent-btn col-12" onclick="need_login()">
+                    <i class="far fa-comment-alt" style="padding-right: 6px;"></i> <span class="extra-I">Comment</span>
+                  </button>
+                </div>
                 {%endif%}
+                <div id="evaluation-{{post[0]}}" class="show-evaluation col-4 flex flex-centerize no-edges">
+                  <button class="replace-extra transparent-btn flex" >
+                    <i class="material-icons full-height col-4">
+                      bubble_chart
+                    </i>
+                    <div class="flex flex-centerize full-height col-8">
+                      <span class="extra-I">Evaluate</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- space for evaluation -->
+              <div class="evaluation-{{post[0]}}-container evaluation-container">
+                <div class="evaluation col-12 test-height no-overflow wt flex flex-column flex-evenly">
+                  <ul class="flex flex-column flex-evenly" style="height:70%; line-height: 2;">
+                    <li>
+                      <div>
+                        evaluated by: <span></span>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        number of teachears: <span></span>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        average mark: <span></span>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="flex flex-column col-12" style="height: 30%;">
+                    <div class="col-8">
+                      add your evaluation from here:
+                    </div>
+                    <div class="col-12 flex flex-evenly" style="padding:1vh; flex-flow:row-reverse;">
+                      <!-- confirm sendig evaluation -->
+                      <div class="col-5">
+                        <button class="transparent-btn col-12">
+                          confirm
+                        </button>
+                      </div>                      
+                      <!-- note part -->
+                      <div class="col-2">
+                        <span id="selected-mark-{{post[0]}}">
+                          a note?
+                        </span>
+                      </div>
+                      <!-- stars part -->
+                      <div class="flex flex-centerize star col-5" style="">
+                          <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 1)">
+                            <span class="material-icons">star</span>
+                          </button>
+                        <div class="flex star" style="">
+                          <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 2)">
+                            <span class="material-icons">star</span>
+                          </button>  
+                          <div class="flex star" style="">
+                            <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 3)">
+                              <span class="material-icons">star</span>
+                            </button>
+                            <div class="flex star" style=" ">
+                              <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 4)">
+                                <span class="material-icons">star</span>
+                              </button>      
+                              <div class="flex star" style=" ">
+                                <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 5)">
+                                  <span class="material-icons">star</span>
+                                </button>        
+                              </div>      
+                            </div>    
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- container for all comments  -->
@@ -380,26 +459,6 @@
     </button>
   </div>
 
-  <!-- options on phone -->
-<!--   <div id="options" class=" options-device-adjust wt serif flex flex-centerize">
-    <div class="col-10 flex flex-column" style="text-align:left; height:75%; line-height:2.5;">
-      <div><button id="show-to-signin" class="transparent-btn"> <i class="fas fa-sign-in-alt"></i> login/register
-        </button></li>
-      </div>
-      <div><button id="add-post" class="transparent-btn"> <i class="fas fa-user-edit"></i> create new post </button>
-        </li>
-      </div>
-      <div><button class="transparent-btn"> <i class="far fa-comments"></i> send message</button></li>
-      </div>
-      <div> <a href="{{ url_for('out') }}"> <button class="transparent-btn"> <i class="fas fa-sign-out-alt"></i>
-            logout</button></a></li>
-      </div>
-    </div>
-    <button id="quit-options" class="wt serif writing-padding no-border">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
- -->
   <div id="container-post-form" class="col-5" style="right: 25%;">
     <div id="post-form" class="col-12 flex flex-centerize">
       <div style="margin: 20px; overflow:hidden;">
@@ -445,9 +504,6 @@
   }
 
   $(document).ready(function () {
-    // $('#exit').click(function(){
-    // })
-
 
     $('#show-to-signin').click(function () {
       if ($('#sign-in-form').css('display') == "none") {
@@ -506,14 +562,26 @@
       $('#')
     })
 
-  })
+    $('.show-evaluation').mouseup(function(){
+      var vr = '.'+ $(this).attr('id') +'-container'
+      if($(vr).css('display')=='none'){
+        $(vr).slideDown()
+      }
+      else{
+        $(vr).slideUp()
+      }
+    })
 
+  })
 
 
   function test_f() {
     alert('test input is working')
   }
-  function input_to_edit() {
+
+  function display_mark(p_id, num){
+    var aimed_mark='selected-mark-'+p_id
+    document.getElementById(aimed_mark).innerHTML=num+"/5";
   }
 
 </script>
