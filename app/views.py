@@ -149,15 +149,14 @@ def get_home():
 			datab.session.add(new_mark)
 			datab.session.commit()
 			return redirect(request.url)
-	else :
-		print('no mark sent')
-		print(form)
+
 	
 	base=sqlite3.connect('app/alchemy.db')
 	curs=base.cursor()
 
 
 	users=models.users.query.all()
+	marks=models.marks.query.all()
 	posts=curs.execute(
 		'SELECT * FROM posts ORDER BY id DESC'
 	).fetchall()
@@ -165,14 +164,36 @@ def get_home():
 	base.close()
 	comments= models.comments.query.all()
 
-	print(posts[1][0])
+	all_avrgs=[]
+	try:
+		for post in posts:
+			s_avrg=calclate_post_average(id=post[0])
+			all_avrgs.append(s_avrg)
+			base=sqlite3.connect('app/alchemy.db')
+			curs=base.cursor()
+			curs.execute(
+				'UPDATE posts SET average_mark=(?) WHERE id=(?)', (s_avrg, post[0])
+			)
+			base.commit()
+			base.close()
+			print('done')
+	except:
+		pass
+	print(all_avrgs)
+
 	return render_template("home.html"
 	,users=users
 	,posts=posts
 	,admin=admin
 	,comments=comments
+	,all_avrgs=all_avrgs
+	,marks=marks
 	)
 
+@app.route('/123/<post_id>')
+def tryit(post_id):
+	print(calclate_post_average(id=post_id))
+	return
 
 @app.route('/register')
 def get_register():
@@ -282,3 +303,25 @@ def delete_post(id):
 	db.commit()
 	db.close()
 	print('post should been edited')
+
+def calclate_post_average(id):
+	db = sqlite3.connect('app/alchemy.db')
+	curs = db.cursor()
+
+	marks=curs.execute(
+		'SELECT mark FROM marks WHERE relative_post_id=(?)',(id,) 
+	).fetchall()
+	db.close()
+	all=[]
+	for mark in marks:
+		all.append(mark[0])
+
+	x=0
+	total=0
+	while x<len(all):
+		total+=all[x]
+		x +=1
+	else:
+		avrg=total/int(len(all))
+
+	return avrg

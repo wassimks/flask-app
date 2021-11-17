@@ -17,6 +17,7 @@ class posts (datab.Model):
     post_title= datab.Column(datab.String(length=50) )
     post_body= datab.Column(datab.String(length=255))
     relative_index= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
+    average_mark= datab.Column(datab.Integer())
 
 class comments(datab.Model):
     id= datab.Column(datab.Integer(), primary_key=True)
