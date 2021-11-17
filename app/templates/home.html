@@ -213,7 +213,7 @@
                   </button>
                 </div>
                 {% else %}
-                <div id="" class="comment col-4 text-centerize no-edges">
+                <div id="" class="comment col-4 flex flex-centerize no-edges">
                   <button class="replace-extra transparent-btn col-12" onclick="need_login()">
                     <i class="far fa-comment-alt" style="padding-right: 6px;"></i> <span class="extra-I">Comment</span>
                   </button>
@@ -258,14 +258,22 @@
                     <div class="col-12 flex flex-evenly" style="padding:1vh; flex-flow:row-reverse;">
                       <!-- confirm sendig evaluation -->
                       <div class="col-5">
-                        <button class="transparent-btn col-12">
-                          confirm
-                        </button>
+                        <form action="#hidden-mark-{{post[0]}}" method="POST" >
+                          <textarea name="note_to_send" id="hidden-mark-{{post[0]}}" cols="10" rows="1" class="no-display"></textarea>
+                          {% if current_user.id %}
+                          <textarea name="user_id" id="poster" cols="10" rows="1" class="no-display">{{current_user.id}}</textarea>
+                          {% else %}
+                          {% endif %}
+                          <textarea name="post_id" id="" cols="10" rows="1" class="no-display">{{post[0]}}</textarea>
+                          <button class="transparent-btn col-12">
+                            confirm
+                          </button>
+                        </form>
                       </div>                      
                       <!-- note part -->
                       <div class="col-2">
                         <span id="selected-mark-{{post[0]}}">
-                          a note?
+                          <!-- mark? -->
                         </span>
                       </div>
                       <!-- stars part -->
@@ -581,7 +589,10 @@
 
   function display_mark(p_id, num){
     var aimed_mark='selected-mark-'+p_id
+    var hidden_mark_space= 'hidden-mark-'+p_id
+
     document.getElementById(aimed_mark).innerHTML=num+"/5";
+    document.getElementById(hidden_mark_space).innerHTML=num;
   }
 
 </script>

@@ -133,6 +133,26 @@ def get_home():
 		datab.session.commit()
 		print('comment added')
 		return redirect(request.url)
+	
+	if 'note_to_send' in form and form['note_to_send']:
+		print('note do exicte')
+		if 'user_id' in form and form['user_id']:
+			mark=form['note_to_send']
+			user_id=form['user_id']
+			post_id=form['post_id']
+
+			new_mark= models.marks(
+				mark=mark,
+				relative_user_id= user_id,
+				relative_post_id= post_id,
+			)
+			datab.session.add(new_mark)
+			datab.session.commit()
+			return redirect(request.url)
+	else :
+		print('no mark sent')
+		print(form)
+	
 	base=sqlite3.connect('app/alchemy.db')
 	curs=base.cursor()
 
