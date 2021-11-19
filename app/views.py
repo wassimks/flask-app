@@ -210,8 +210,39 @@ def tryit(post_id):
 	print(calclate_post_average(id=post_id))
 	return
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def get_register():
+	form = request.form
+	if "new_username" in form and form['new_username']:
+		if "password" in form and form['password']:
+			if "c_password" in form and form['c_password'] and form['c_password']==form['password']:
+				# db = get_db()
+				new_username=form['new_username']
+				password=form['password']
+
+				n_user=models.users(
+					username=new_username,
+					password=password,
+				)
+				datab.session.add(n_user)
+				datab.session.commit()
+				login_user(n_user)
+				print('user added to users class from models file, and user had been logged in')
+				print(current_user)
+				return redirect(request.root_url)
+
+				# db.execute(
+				# 	'INSERT INTO users(username, password) VALUES(?,?)', (new_username,password)
+				# )
+				# db.commit()
+				return redirect(request.url)
+			else:
+				print('confirmed password were wrong')
+		else:
+			print('no password were sent')
+	else:
+		print('no user name were sent')
+
 	return render_template('ph_register.html')
 
 @app.route('/login', methods=['GET','POST'])
@@ -222,16 +253,18 @@ def get_login():
 			datab.create_all()
 		except:
 			pass
-		# print('1st step')
+		print('1st step')
 		if "username_to_login" in form and form['username_to_login']:
-			# print('2nd step')
+			print('2nd step')
 			if "password_to_login" in form and form['password_to_login']:
 				username_to_check=form['username_to_login']
 				password_to_check=form['password_to_login']
 
 				user_found=models.users.query.filter_by(username=username_to_check).first()
 				if user_found and user_found.username :
+					print('user really found and with a username')
 					if user_found.password==password_to_check:
+						print('password entered correctly')
 						login_user(user_found)
 						return redirect(request.url_root)
 					else:
