@@ -17,4 +17,14 @@ app.config['SECRET_KEY']='123654789963258741321456987'
 #     , DATABASE=os.path.join(app.instance_path, 'flaskApp.sqlite')
 # )
 
-from . import views
+""" def test(inp=2):
+	marks=models.marks.query.filter_by(relative_user_id=2).all()
+	print (marks)
+	print(type(marks))
+	for mark in marks:
+		if inp == mark.relative_post_id:
+			print(True)
+			break """
+
+from . import views 
+from .views import test

@@ -27,7 +27,7 @@
   
   <!-- navbar on pc -->
     <div  id="navbar" style=" position:fixed; top:0px; width: 100%; height:8vh;"
-          class="on-pc flex dark-mode-item-bg writing-padding">
+          class="on-pc flex dark-mode-item-bg ">
       <div class="col-4 wt flex on-pc">
         <div class="profile-image">
           <img style="width:100%; height:100%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
@@ -63,8 +63,9 @@
           {% endif %}
         </div>
         <div class="flex wt ">
-          <div>points</div>
-          <div>points.ph</div>
+          {% if current_user.id%}
+            <div class="flex flex-centerize serif" style="text-shadow:0px 0px 4px #664b86;">{{count}}<i class="fas fa-coins writing-padding"></i></div>
+          {% endif %}
         </div>
         <div class="flex wt">
           <button id="" class="more-options transparent-btn" style="color: white;">
@@ -77,18 +78,21 @@
     <!-- navbar on phone -->
     <div class="col-12 on-phone">
       <div  id="navbar" style="position:fixed; top:0px; width: 100%; height:8vh; z-index:100;"
-            class="no-overflow flex flex-between dark-mode-item-bg writing-padding">
-        <div class="col-7 wt flex">
-          <div class="profile-image">
-            <img style="width:70%; height:70%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
+            class="no-overflow flex flex-between dark-mode-item-bg ">
+        <div class="col-4 wt flex " style="align-items: center;padding-left: 4vw;">
+          <div class="profile-image" >
+            <img style="width:9vw; height:9vw; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
               alt="">
           </div>
-          <span style="font-family:'hand writing',cursive; font-size:large; padding-left: 4px;">mede-univ</span>
+          <!-- <span style="font-family:'hand writing',cursive; font-size:large; padding-left: 4px;">mede-univ</span> -->
         </div>
-        <div class="col-4 flex flex-evenly wt">
+        <div class="col-6 flex flex-centerize" style="justify-content: flex-end; padding-right: 8vw;">
+          <div class="serif wt" style="text-shadow:0px 0px 4px #664b86; font-size: small;">{{count}}<i class="fas fa-coins writing-padding"></i></div>
+        </div>
+        <div class="col-2 flex flex-evenly wt" style="font-size: small; border-left: 1px solid white; border-bottom: 1px solid white; box-shadow:0px 0px 4px lightgrey;">
           <div class="flex wt col-12">
             <button id="" class=" more-options transparent-btn col-12" style="color: white;">
-              more
+              More
             </button>
           </div>
         </div>
@@ -116,7 +120,7 @@
                 <!-- table on phone -->
                 <table class="col-12 on-phone">
                   <tr>
-                    <td style="" class="col-12 no-overflow text-centerize" colspan="2">title: {{ post[2] }} </td>
+                    <td  class="col-12 no-overflow text-centerize" colspan="2">title: {{ post[2] }} </td>
                   </tr>
                 </table>
 
@@ -233,231 +237,75 @@
               
               <!-- space for evaluation -->
               <div class="evaluation-{{post[0]}}-container evaluation-container">
-                <div class="evaluation col-12 test-height no-overflow wt flex flex-column flex-evenly">
-                  <ul class="flex flex-column flex-evenly" style="height:70%; line-height: 2;">
-                    <li>
-                      <div>
-                        evaluated by: <span></span>
+                <div class="evaluation col-12 no-overflow wt" style="display:grid; grid-template-columns:50% 25% 25%; grid-template-rows:2; ">
+                  <!-- title -->
+                  <div class="flex flex-centerize" style="grid-column: span 3; padding: 8vh 0vw 2vh;">
+                    <h6 class="serif">
+                      attribute to the post evaluation from here:
+                    </h6>
+                  </div>
+                  <!-- stars -->
+                  <div id="" class="flex flex-centerize" >
+                    <div class="flex flex-centerize star col-5" >
+                      <button class="transparent-btn flex flex-centerize stars-for-{{post[0]}} stars-for-{{post[0]}}-num1" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 1)">
+                        <span class="material-icons">star</span>
+                      </button>
+                      <div class="flex star no-2-for-p{{post[0]}}" >
+                        <button class="transparent-btn flex flex-centerize stars-for-{{post[0]}} stars-for-{{post[0]}}-num2" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 2)">
+                          <span class="material-icons">star</span>
+                        </button>  
+                        <div class="flex star no-3-for-p{{post[0]}}" >
+                          <button class="transparent-btn flex flex-centerize stars-for-{{post[0]}} stars-for-{{post[0]}}-num3" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 3)">
+                            <span class="material-icons">star</span>
+                          </button>
+                          <div class="flex star no-4-for-p{{post[0]}}" >
+                            <button class="transparent-btn flex flex-centerize stars-for-{{post[0]}} stars-for-{{post[0]}}-num4" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 4)">
+                              <span class="material-icons">star</span>
+                            </button>      
+                            <div class="flex star no-5-for-p{{post[0]}}" >
+                              <button class="transparent-btn flex flex-centerize stars-for-{{post[0]}} stars-for-{{post[0]}}-num5" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 5)">
+                                <span class="material-icons">star</span>
+                              </button>        
+                            </div>      
+                          </div>    
+                        </div>  
                       </div>
-                    </li>
-                    <li>
-                      <div>
-                        number of teachears: <span></span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="flex flex-between">
-                        <div class="col-8"> average mark for this post: </div> <div class="col-4 flex flex-centerize">{{post[5]}}</div>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="flex flex-column col-12" style="height: 30%;">
-                    <div class="col-8">
-                      add your evaluation from here:
                     </div>
-                    <div class="col-12 flex flex-evenly" style="padding:1vh; flex-flow:row-reverse;">
-                      <!-- confirm sendig evaluation -->
-                      {% if current_user.id %}
-                        <div class="col-5">
-                          <form action="#hidden-mark-{{post[0]}}" method="POST" >
-                            <textarea name="note_to_send" id="hidden-mark-{{post[0]}}" cols="10" rows="1" class="no-display"></textarea>
-                            {% if current_user.id %}
-                            <textarea name="user_id" id="poster" cols="10" rows="1" class="no-display">{{current_user.id}}</textarea>
-                            {% else %}
-                            {% endif %}
-                            <textarea name="post_id" id="" cols="10" rows="1" class="no-display">{{post[0]}}</textarea>
-                            {% for mk in marks %}
-                              {% if current_user.id==mk.relative_user_id %}
-                              <div class="transparent-btn col-12">
-                                rated!
-                              </div>  
-                              {% else %}
-                                <button class="transparent-btn col-12">
-                                  confirm
-                                </button>  
-                              {% endif %}
-                            {% endfor %}
-                          </form>
-                        </div>
-                        {% else %}
-                        <div style="font-size: small; font-family: cursive; color: grey;">
-                          please login first so you rate this post and all the others
-                        </div>
-                      {% endif %}                   
-                      <!-- note part -->
-                      <div class="col-2">
-                        <span id="selected-mark-{{post[0]}}" class="no-display">
-                          <!-- mark? -->
-                        </span>
-                        <span id="selected-mark-{{post[0]}}" class="no-display">
-                        </span>
-                      </div>
-                      <!-- stars part -->
+                  </div>
 
-                      {% for mk in marks %}
-                        {% if current_user.id==mk.relative_user_id %}
-                          {% if mk.mark==1 %}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-                          {% elif mk.mark==2%}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-                          {% elif mk.mark==3 %}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-                          {% elif mk.mark==4 %}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="background-color:transparent;">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-                          {% elif mk.mark==5 %}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="color:#03dac5; text-shadow: 0px 0px 2px rgb(255, 255, 78);">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-  
+
+
+                  <!-- rate -->
+                  <div class="flex flex-centerize">
+                    <div id="selected-mark-{{post[0]}}">
+                      {% if test(post[0]) %}
+                      <div class="transparent-btn serif">
+                        {% for mk in marks %}
+                          {% if current_user.id==mk.relative_user_id and post[0]==mk.relative_post_id %}
+                            {{ mk.mark }}
                           {% endif %}
-                        {% endif %}
-                        {% else %}
-                          <div class="flex flex-centerize star col-5" style="">
-                              <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 1)">
-                                <span class="material-icons">star</span>
-                              </button>
-                            <div class="flex star" style="">
-                              <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 2)">
-                                <span class="material-icons">star</span>
-                              </button>  
-                              <div class="flex star" style="">
-                                <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 3)">
-                                  <span class="material-icons">star</span>
-                                </button>
-                                <div class="flex star" style=" ">
-                                  <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 4)">
-                                    <span class="material-icons">star</span>
-                                  </button>      
-                                  <div class="flex star" style=" ">
-                                    <button class="transparent-btn flex flex-centerize" style="background-color:transparent;" onclick="display_mark(p_id='{{post[0]}}', 5)">
-                                      <span class="material-icons">star</span>
-                                    </button>        
-                                  </div>      
-                                </div>    
-                              </div>  
-                            </div>
-                          </div>
-                      {% endfor %}
-                      
+                        {% endfor %}
+                      </div>
+                      {% else %}
+                      {% endif %}
                     </div>
+                  </div>
+
+                  <!-- rated or not -->
+                  <div class="flex flex-centerize">
+                    <form action="" method="POST" >
+                        <input type="text" name="note_to_send" id="hidden-mark-{{post[0]}}" class="no-display">
+                        {% if current_user.id %}
+                        <textarea name="user_id" id="poster" cols="10" rows="1" class="no-display">{{current_user.id}}</textarea>
+                        {% else %}
+                        {%endif%}
+                        <textarea name="post_id" id="" cols="30" rows="1" class="no-display">{{post[0]}}</textarea>
+                        {% if test(post[0]) %}
+                        <div class="transparent-btn serif">Rated!</div>
+                        {% else %}
+                        <input type="submit" value="confirme" class="transparent-btn">
+                        {% endif %}
+                    </form>
                   </div>
                 </div>
               </div>
@@ -735,6 +583,10 @@
       }
     })
 
+    function relative_stars(starsNum, postId){
+      
+    }
+
   })
 
 
@@ -745,10 +597,38 @@
   function display_mark(p_id, num){
     var aimed_mark='selected-mark-'+p_id
     var hidden_mark_space= 'hidden-mark-'+p_id
+    var tt =num+"/5"
 
-    document.getElementById(aimed_mark).innerHTML=num+"/5";
-    document.getElementById(hidden_mark_space).innerHTML=num;
+    document.getElementById(aimed_mark).innerHTML=tt;
+    document.getElementById(hidden_mark_space).value=num;
+    $('.stars-for-'+p_id).css(
+      {'color':'#03dac5','text-shadow':'0px 0px 2px rgb(255, 255, 78)'}
+      )
+    $('.stars-for-'+p_id+'-num'+num).css(
+      {'color':'white','text-shadow':'0px 0px 4px rgb(255, 255, 78)'}
+      )
   }
+
+  function check_user(marks, i_d, relative_user_id){
+    print(marks, i_d, relative_user_id)
+    x=0
+    while(x<marks.length()) 
+      if (i_d == relative_user_id){
+        return true
+        break;
+      }
+      ++x
+  }
+
+/*   function check(){
+    rated_id='rated-'+$()
+    var r = document.getElementById()
+
+    if(r){
+      $('#')
+    }
+  }
+ */
 
 </script>
 

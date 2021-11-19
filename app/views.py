@@ -16,6 +16,7 @@ def get_home():
 	method=request.method
 	admin=''
 
+	print('[Create account] >>')
 	if method == "POST":
 		try:
 			datab.create_all()
@@ -50,6 +51,7 @@ def get_home():
 		else:
 			print('no user name were sent')
 
+	print('[Login] >>')
 	if method == "POST":
 		try:
 			datab.create_all()
@@ -76,6 +78,7 @@ def get_home():
 		else :
 			print('no username sent to login or wrong username')
 
+	print('[Create post] >>')
 	if method == "POST":
 		# print('first step to post validated ')
 		if "post-title" in form and form["post-title"]:
@@ -105,17 +108,20 @@ def get_home():
 	else:
 		print('method not equal to post '+" ; "+ method)
 	
+	print('[Edite form] >>')
 	if 'edited_post' in form and form['edited_post']:
 		new= form['edited_post']
 		id= form['edited-post-id']
 		edited_post(new, id)
 		return redirect(request.url)
 
+	print('[Delete post] >>')
 	if 'delete_post' in args and args['delete_post']:
 		id= args['delete_post']
 		delete_post(id)
 		return redirect(request.url_root)
 
+	print('[Add Comment] >>')
 	if 'add-comment' in form and form['add-comment']:
 		comment= form['add-comment']
 		commenter= form['commenter']
@@ -134,7 +140,8 @@ def get_home():
 		print('comment added')
 		return redirect(request.url)
 	
-	if 'note_to_send' in form and form['note_to_send']:
+	print('[Add mark] >>')
+	if 'note_to_send' in form and request.form['note_to_send']:
 		print('note do exicte')
 		if 'user_id' in form and form['user_id']:
 			mark=form['note_to_send']
@@ -149,7 +156,9 @@ def get_home():
 			datab.session.add(new_mark)
 			datab.session.commit()
 			return redirect(request.url)
-
+	else:
+		print('note not recieved ;'+ method)
+		print(form)
 	
 	base=sqlite3.connect('app/alchemy.db')
 	curs=base.cursor()
@@ -176,10 +185,14 @@ def get_home():
 			)
 			base.commit()
 			base.close()
-			print('done')
 	except:
 		pass
 	print(all_avrgs)
+
+	try:
+		count=count_coins(id=current_user.id, data=posts)
+	except:
+		count="???"
 
 	return render_template("home.html"
 	,users=users
@@ -188,6 +201,8 @@ def get_home():
 	,comments=comments
 	,all_avrgs=all_avrgs
 	,marks=marks
+	,test=test
+	,count=count
 	)
 
 @app.route('/123/<post_id>')
@@ -239,6 +254,8 @@ def out():
 def get_posting():
 	method=request.method
 	form=request.form
+
+	print('get_postin route >>')
 	if method == "POST":
 		# print('first step to post validated ')
 		if "post-title" in form and form["post-title"]:
@@ -322,6 +339,28 @@ def calclate_post_average(id):
 		total+=all[x]
 		x +=1
 	else:
-		avrg=total/int(len(all))
+		avrg=float("{:.2f}".format(total/int(len(all))))
 
 	return avrg
+
+def test(inp):
+	stat=0
+	try:
+		marks=models.marks.query.filter_by(relative_user_id=current_user.id).all()
+		for mark in marks:
+			if inp == mark.relative_post_id:
+				stat=1
+				break
+	except:
+		pass
+	return stat
+
+def count_coins(id, data):
+	count=0
+	try:
+		for row in data:
+			if id==row[4]:
+				count+=row[5]*100
+	except:
+		print('not functioning')
+	return format(count, ".2f")

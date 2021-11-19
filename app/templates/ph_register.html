@@ -15,13 +15,13 @@
     <div class="col-12 dark-mode-bg full-page-height flex flex-centerize">
         <div class="col-10 dark-mode-item-bg wt flex" style="height: 80vh;">
             <div class="col-12">
-                <div class="col-12 flex flex-centerize" style="height: 30%;">
+                <div id="image" class="col-12 flex flex-centerize" style="height: 30%;">
                     <div class="flex flex-centerize" style="width: 80px; height: 80px;">
                         <img src="/static/IMG/Stethoscope on the keyboard.jpeg" alt="" style="width:100%; height:100%; border-radius: 90px;">
                     </div>
                 </div>
-                <div class="no-overflow" style="height:70%;">
-                    <div id="login_form" class="flex flex-between full-height" style="">
+                <div id="content" class="no-overflow" style="height:70%;">
+                    <div id="login_form" class="flex flex-between full-height" style="min-height: 280px;">
                         <div class="flex flex-centerize flex-column col-12 ">
                           <form action="" method="POST" class="flex flex-column flex-evenly col-11" style="height:80%;">
                             <span class="wt flex flex-centerize serif" style="font-size: small;"> Create a username:</span>
@@ -39,7 +39,7 @@
                                 type="submit">validate</button>
                             </div>
                           </form>
-                          <div class="wt col-8 serif flex flex-centerize">
+                          <div class="wt col-8 serif flex flex-centerize" style="height:20%;">
                               <div style="text-align: center; font-size:x-small;">
                                   already having an account? click
                                   <button id="" class="transparent-btn to_log">
@@ -54,7 +54,6 @@
                       </div>                
                 </div>
             </div>
-            <div></div>
         </div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -68,4 +67,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      setInterval(function(){
+        var fh = $('.full-page-height').css('height').split('p')[0]
+        if( fh <= 380 ){
+          $('#image').hide()
+          $('#content').css('height','100%')
+        }
+        else{
+          $('#image').show()
+          $('#content').css('height','70%')
+        }
+      }, 50)
+    })
+  </script>
 </html>
