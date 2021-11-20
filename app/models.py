@@ -35,3 +35,9 @@ class marks(datab.Model):
     mark= datab.Column(datab.Integer())
     relative_user_id= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
     relative_post_id= datab.Column(datab.Integer(), datab.ForeignKey(posts.id))
+    
+class edites(datab.Model):
+    id= datab.Column(datab.Integer(), primary_key=True)
+    date= datab.Column(datab.String(), default=datetime.utcnow().strftime('%d-%m-%Y %H:%M '))
+    relative_user_id= datab.Column(datab.Integer(), datab.ForeignKey(users.id))
+    relative_title_id= datab.Column(datab.Integer(), datab.ForeignKey(posts.id))

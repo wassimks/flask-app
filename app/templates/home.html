@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/static/CSS/dark_mode.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
-  <title>Home</title>
+  <Title>Home</Title>
   <script src="https://kit.fontawesome.com/01dd9deafe.js" crossorigin="anonymous"></script>
   <style>
 
@@ -27,10 +27,10 @@
   
   <!-- navbar on pc -->
     <div  id="navbar" style=" position:fixed; top:0px; width: 100%; height:8vh;"
-          class="on-pc flex dark-mode-item-bg ">
+          class="on-pc flex dark-mode-item-bg flex-centerize">
       <div class="col-4 wt flex on-pc">
         <div class="profile-image">
-          <img style="width:100%; height:100%; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
+          <img style="width:100%; height:100%; border-radius:90px; max-height:5vh; max-width:5vh;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
             alt="">
         </div>
         <span style="font-family:'hand writing',cursive; font-size:x-large; padding-left: 4px;">mede-univ</span>
@@ -69,7 +69,7 @@
         </div>
         <div class="flex wt">
           <button id="" class="more-options transparent-btn" style="color: white;">
-            more
+            More
           </button>
         </div>
       </div>
@@ -81,7 +81,7 @@
             class="no-overflow flex flex-between dark-mode-item-bg ">
         <div class="col-4 wt flex " style="align-items: center;padding-left: 4vw;">
           <div class="profile-image" >
-            <img style="width:9vw; height:9vw; border-radius:90px;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
+            <img style="width:9vw; height:9vw; border-radius:90px; max-height:5vh; max-width:5vh;" src="/static/IMG/Stethoscope on the keyboard.jpeg"
               alt="">
           </div>
           <!-- <span style="font-family:'hand writing',cursive; font-size:large; padding-left: 4px;">mede-univ</span> -->
@@ -112,19 +112,15 @@
                 <!-- table on-pc -->
                 <table class="col-12 on-pc">
                   <tr>
-                    <td style="width:40%;" class="no-overflow">title: {{ post[2] }} </td>
-                    <td>created: {{ post[1] }}</td>
+                    <td style="width:40%;" class="no-overflow">Title: {{ post[2] }} </td>
+                    <td class="no-overfolw">created: {{ post[1] }}</td>
                   </tr>
                 </table>
 
                 <!-- table on phone -->
-                <table class="col-12 on-phone">
-                  <tr>
-                    <td  class="col-12 no-overflow text-centerize" colspan="2">title: {{ post[2] }} </td>
-                  </tr>
-                </table>
+                  <div class="on-phone col-12 no-overflow flex flex-centerize" style="letter-spacing:0.05rem; text-align: center;">Title: {{ post[2] }} </div>
 
-                <!-- carousel to display titles -->
+                <!-- carousel to display Titles -->
               </div>
             </div>
             {% endfor %}
@@ -148,27 +144,61 @@
                   {% endif %}
                 {% endfor %}
                 <div class="col-4 flex flex-centerize" style="font-size: 12px;">{{post[1]}}</div>
-                {% if current_user.id == post[4]%}
                 <div id="test" class="col-2 xl-font flex flex-centerize to-control" style=" position:relative;"
-                  aria-expanded="true">
-                  <button class="transparent-btn" style="color: white;">
-                    <i class="fas fa-align-justify"></i>
-                  </button>
+                aria-expanded="true">
+                <button class="transparent-btn" style="color: white;">
+                  <i class="fas fa-align-justify"></i>
+                </button>
                   <div class="reltinize" style="display:none; "> {{ post[0] }} </div>
-                  <div id="edit_delete_container" class="col-12 writing-padding"
-                    style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11;">
+<!--                   <div  id="edit_delete_container" class="writing-padding "
+                        style="position:absolute; top:100%; background-color:rgba(0,0,0,0.9); z-index:11; width:20vw;">
+                  {% if current_user.id == post[4]%}
                     <button id="edit-{{post[0]}}" class="transparent-btn edit">
                       <div style="font-size:14px;">  edit post </div>
                     </button>
-                    <a href="{{url_for('get_home' , delete_post=post[0] ) }}">
-                      <div style="font-size:14px;">delete post</div>
+                    <a href="{{url_for('get_home' , delete_post=post[0] ) }}" class="flex">
+                      <div style="font-size: x-small;" class="col-2 flex flex-centerize"><i class="fas fa-trash-alt"></i></div>
+                      <div style="font-size:14px;" class="col-10">delete post</div>
                     </a>
+                  {% endif %}
+                    <div class="flex flex-centerize" style="font-size: small;">
+                      <span class="material-icons">
+                        report
+                      </span>
+                      <div>
+                        report problem
+                      </div>
+                    </div>
+                    
                   </div>
+ -->                
+                  <div id="edit_delete_container" class="no-edges">
+                    <div class="control-item col-12 flex flex-centerize">
+                      <a href="mailto:kswassim.sdr@gmail.com" class="flex col-10" style="text-decoration: none; color:#03dac5;">
+                        <div class="flex flex-centerize col-2"><span class="material-icons" style="font-size: 1.2rem;">report</span></div>
+                        <div style="font-size: medium;" class="flex flex-centerize">report a problem</div>
+                      </a>
+                    </div>
+                    {% if current_user.id == post[4]%}
+                    <div class="control-item col-12 flex flex-centerize">
+                      <button id="edit-{{post[0]}}" class="transparent-btn edit col-10 flex">
+                        <div style="font-size: small;" class="flex flex-centerize col-2"><i class="far fa-edit"></i></div>
+                        <div style="font-size: medium;">  edit post </div>
+                      </button>
+                    </div>
+                    <div class="control-item col-12 flex flex-centerize">
+                      <a href="{{url_for('get_home' , delete_post=post[0] ) }}" class="flex col-10" style="text-decoration: none; color:#03dac5;">
+                        <div style="font-size: small;" class="flex flex-centerize col-2"><i class="fas fa-trash-alt"></i></div>
+                        <div style="font-size: medium;" class="flex flex-centerize">delete post</div>
+                      </a>
+                    </div>
+                    {% endif %}
+                  </div>
+
                 </div>
-                {% endif %}
               </div>
 
-              <!-- post title -->
+              <!-- post Title -->
               <div id="post-description" class="col-12 flex flex-centerize wt">
                 <h4 class="" style="font-family: cursive;">
                   {{post[2]}}
@@ -202,7 +232,7 @@
 
               
               <!-- comment && like buttons -->
-              <div class="col-12 wt flex " style="border-top:1px solid grey; padding: 8px;">
+              <div class="col-12 wt flex flex-between" style="border-top:1px solid grey; padding: 8px;">
                 <div class="col-4 text-centerize no-edges">
                   <button class="replace-extra transparent-btn col-12">
                     <i class="fas fa-paperclip"></i> <span class="extra-I">Attachement</span>
@@ -217,7 +247,7 @@
                   </button>
                 </div>
                 {% else %}
-                <div id="" class="comment col-4 flex flex-centerize no-edges">
+                <div class="comment col-4 flex flex-centerize no-edges">
                   <button class="replace-extra transparent-btn col-12" onclick="need_login()">
                     <i class="far fa-comment-alt" style="padding-right: 6px;"></i> <span class="extra-I">Comment</span>
                   </button>
@@ -238,7 +268,7 @@
               <!-- space for evaluation -->
               <div class="evaluation-{{post[0]}}-container evaluation-container">
                 <div class="evaluation col-12 no-overflow wt" style="display:grid; grid-template-columns:50% 25% 25%; grid-template-rows:2; ">
-                  <!-- title -->
+                  <!-- Title -->
                   <div class="flex flex-centerize" style="grid-column: span 3; padding: 8vh 0vw 2vh;">
                     <h6 class="serif">
                       attribute to the post evaluation from here:
@@ -476,10 +506,10 @@
         <form action="" method="POST" class="flex flex-evenly flex-column">
           <div class="flex flex-centerize flex-column">
             <div class="flex flex-centerize wt serif writing-padding" style="font-size: small;">
-              Simplify the post with a title:
+              Simplify the post with a Title:
             </div>
-            <input name="post-title" type="text" class="no-edges no-border text-centerize serif col-10"
-              placeholder="title">
+            <input name="post-Title" type="text" class="no-edges no-border text-centerize serif col-10"
+              placeholder="Title">
           </div>
           <div>
             <br><br>

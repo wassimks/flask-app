@@ -15,6 +15,16 @@ def get_home():
 	args=request.args
 	method=request.method
 	admin=''
+	base=sqlite3.connect('app/alchemy.db')
+	curs=base.cursor()
+
+	posts=curs.execute(
+		'SELECT * FROM posts ORDER BY id DESC'
+	).fetchall()
+	base.commit()
+	base.close()
+	comments= models.comments.query.all()
+
 
 	print('[Create account] >>')
 	if method == "POST":
@@ -112,7 +122,9 @@ def get_home():
 	if 'edited_post' in form and form['edited_post']:
 		new= form['edited_post']
 		id= form['edited-post-id']
+		p_details= models.posts.query.filter_by(id=id).first()
 		edited_post(new, id)
+		save_edits_history(id, p_details.post_title)
 		return redirect(request.url)
 
 	print('[Delete post] >>')
@@ -159,19 +171,10 @@ def get_home():
 	else:
 		print('note not recieved ;'+ method)
 		print(form)
-	
-	base=sqlite3.connect('app/alchemy.db')
-	curs=base.cursor()
 
 
 	users=models.users.query.all()
 	marks=models.marks.query.all()
-	posts=curs.execute(
-		'SELECT * FROM posts ORDER BY id DESC'
-	).fetchall()
-	base.commit()
-	base.close()
-	comments= models.comments.query.all()
 
 	all_avrgs=[]
 	try:
@@ -342,7 +345,16 @@ def edited_post(new_body, id):
 	db.commit()
 	db.close()
 	print('post should been edited')
-	
+
+def save_edits_history(id, title):
+	new_edit=models.edites(
+		relative_user_id=id,
+		relative_title_id=title,
+	)
+	datab.session.add(new_edit)
+	datab.session.commit()
+	print('edit info saved')
+
 def delete_post(id):
 	db=sqlite3.connect('app/alchemy.db')
 	curs=db.cursor()
